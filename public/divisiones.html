@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- =========================================
+         CONFIGURACIÓN GENERAL
+    ========================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Conoce las divisiones institucionales de TEINCO y consulta información con AsistIA."
+    />
+
+    <meta name="theme-color" content="#090a16" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="author" content="TEINCO" />
+
+    <title>AsistIA | Divisiones institucionales</title>
+
+    <!-- =========================================
+         FUENTES TIPOGRÁFICAS
+    ========================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =========================================
+         HOJAS DE ESTILOS
+    ========================================== -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/divisiones.css" />
+  </head>
+
+  <body>
+    <!-- =========================================
+         FONDO DECORATIVO
+    ========================================== -->
+    <div class="background-effects" aria-hidden="true">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <!-- =========================================
+         BARRA DE NAVEGACIÓN
+    ========================================== -->
+    <header class="barra-navegacion">
+      <div class="nav-izquierda">
+        <a
+          href="index.html"
+          class="marca"
+          aria-label="AsistIA, volver al inicio"
+        >
+          <div class="brand-mark">
+            <img src="assets/img/logo-asistia.png" alt="Logo de AsistIA" />
+          </div>
+
+          <div class="marca-texto">
+            <span class="nombre-app">Asist<span>IA</span></span>
+            <span class="marca-descripcion">ASISTENTE INSTITUCIONAL</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- NAVEGACIÓN PRINCIPAL -->
+      <nav class="nav-enlaces" aria-label="Navegación principal">
+        <a href="index.html" class="enlace-nav">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <span>Inicio</span>
+        </a>
+
+        <a href="divisiones.html" class="enlace-nav activo" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect
+              x="3"
+              y="3"
+              width="8"
+              height="8"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+
+            <rect
+              x="13"
+              y="3"
+              width="8"
+              height="8"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+
+            <rect
+              x="3"
+              y="13"
+              width="8"
+              height="8"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+
+            <rect
+              x="13"
+              y="13"
+              width="8"
+              height="8"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+          </svg>
+
+          <span>Divisiones</span>
+        </a>
+
+        <a href="chat.html" class="enlace-nav">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-7.5a7.5 7.5 0 1 1 17-2Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            <path
+              d="M8 10h8M8 14h5"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+
+          <span>Chat</span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- =========================================
+         CONTENIDO PRINCIPAL
+    ========================================== -->
+    <main class="contenedor-divisiones">
+      <!-- PRESENTACIÓN -->
+      <section class="encabezado-divisiones" aria-labelledby="titulo-principal">
+        <h1 class="titulo-pagina" id="titulo-principal">
+          Explora las divisiones
+          <span>de TEINCO.</span>
+        </h1>
+
+        <p class="subtitulo-pagina">
+          Conoce las diferentes áreas de atención institucional y descubre cómo
+          AsistIA puede orientarte con información clara y confiable.
+        </p>
+      </section>
+
+      <!-- =========================================
+           LISTADO DE DIVISIONES
+      ========================================== -->
+      <section class="seccion-divisiones" aria-labelledby="titulo-listado">
+        <div class="encabezado-listado">
+          <div>
+            <span class="texto-superior">ÁREAS INSTITUCIONALES</span>
+            <h2 id="titulo-listado">¿Qué necesitas consultar?</h2>
+          </div>
+
+          <span
+            class="contador-divisiones"
+            id="contador-divisiones"
+            aria-label="Cuatro divisiones institucionales"
+          >
+            04 divisiones
+          </span>
+        </div>
+
+        <!--
+          Las divisiones se presentan inicialmente en el HTML.
+          Su información podrá integrarse con el backend cuando
+          se implemente la conexión con PostgreSQL.
+        -->
+
+        <div
+          class="cuadricula-divisiones"
+          id="cuadricula-divisiones"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <p>Cargando divisiones institucionales...</p>
+        </div>
+      </section>
+
+      <!-- =========================================
+           BLOQUE DE AYUDA GENERAL
+      ========================================== -->
+      <section class="bloque-ayuda" aria-labelledby="titulo-ayuda">
+        <div class="ayuda-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+
+            <path
+              d="M9.5 9a2.5 2.5 0 1 1 4.3 1.7c-1 .9-1.8 1.2-1.8 2.8m0 3h.01"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+
+        <div class="ayuda-general-texto">
+          <h2 id="titulo-ayuda">¿No sabes a qué división dirigirte?</h2>
+
+          <p>
+            No te preocupes. Puedes conversar con AsistIA y recibir orientación
+            para identificar el área correspondiente a tu consulta.
+          </p>
+        </div>
+
+        <a href="chat.html" class="btn-ayuda-general">
+          Hablar con AsistIA
+          <span aria-hidden="true">→</span>
+        </a>
+      </section>
+    </main>
+
+    <!-- =========================================
+         PIE DE PÁGINA
+    ========================================== -->
+    <footer class="pie-pagina">
+      <div class="footer-institucion">
+        <span class="footer-nombre">AsistIA</span>
+
+        <span>Corporación Tecnológica Industrial Colombiana</span>
+      </div>
+
+      <span class="footer-derechos">
+        © <span id="current-year"></span> TEINCO. Todos los derechos reservados.
+      </span>
+    </footer>
+
+    <!-- =========================================
+         JAVASCRIPT — NAVEGACIÓN POR DIVISIONES
+    ========================================== -->
+
+    <script>
+      "use strict";
+
+      (() => {
+        // =====================================
+        // ELEMENTOS DEL DOM
+        // =====================================
+
+        const grid = document.getElementById("cuadricula-divisiones");
+        const contador = document.getElementById("contador-divisiones");
+        const currentYear = document.getElementById("current-year");
+
+        // =====================================
+        // CONFIGURACIÓN DE ICONOS
+        // =====================================
+
+        const configuracionIconos = {
+          admisiones: {
+            clase: "icono-admisiones",
+            categoria: "INGRESO INSTITUCIONAL",
+            svg: `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3 3 8l9 5 9-5-9-5Z"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linejoin="round"/>
+            <path d="M7 10.2V16c3 2.2 7 2.2 10 0v-5.8M21 8v7"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round"/>
+          </svg>
+        `,
+          },
+
+          registro: {
+            clase: "icono-registro",
+            categoria: "GESTIÓN ACADÉMICA",
+            svg: `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linejoin="round"/>
+            <path d="M14 3v5h5M9 13h6M9 17h6"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round"/>
+          </svg>
+        `,
+          },
+
+          bienestar: {
+            clase: "icono-bienestar",
+            categoria: "DESARROLLO INTEGRAL",
+            svg: `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20.8 8.8c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.8 4.8 0 0 1 12 6.5a4.8 4.8 0 0 1 8.8 2.3Z"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linejoin="round"/>
+          </svg>
+        `,
+          },
+
+          academica: {
+            clase: "icono-academica",
+            categoria: "ACOMPAÑAMIENTO ACADÉMICO",
+            svg: `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 5h18v14H3z"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linejoin="round"/>
+            <path d="M7 9h10M7 13h6"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round"/>
+          </svg>
+        `,
+          },
+        };
+
+        const iconoGenerico = {
+          clase: "icono-division",
+          categoria: "ÁREA INSTITUCIONAL",
+          svg: `
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="4" y="4" width="16" height="16" rx="3"
+            stroke="currentColor" stroke-width="1.6"/>
+          <path d="M8 9h8M8 13h8M8 17h5"
+            stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round"/>
+        </svg>
+      `,
+        };
+
+        // =====================================
+        // AÑO AUTOMÁTICO
+        // =====================================
+
+        if (currentYear) {
+          currentYear.textContent = new Date().getFullYear();
+        }
+
+        // =====================================
+        // CREAR ELEMENTOS DE FORMA SEGURA
+        // =====================================
+
+        function crearElemento(etiqueta, clase, texto) {
+          const elemento = document.createElement(etiqueta);
+
+          if (clase) {
+            elemento.className = clase;
+          }
+
+          if (texto !== undefined) {
+            elemento.textContent = texto;
+          }
+
+          return elemento;
+        }
+
+        // =====================================
+        // CONSTRUIR TARJETA
+        // =====================================
+
+        function crearTarjeta(division, indice) {
+          const nombre = String(division.nombre || "").trim();
+          const descripcion = String(division.descripcion || "").trim();
+          const id = String(division.id || "").trim();
+
+          if (!nombre || !id) {
+            return null;
+          }
+
+          const config = configuracionIconos[id] || iconoGenerico;
+
+          const tarjeta = crearElemento("article", "tarjeta-division");
+
+          // Cabecera
+          const cabecera = crearElemento("div", "division-cabecera");
+
+          const icono = crearElemento("div", `icono-division ${config.clase}`);
+
+          // SVG fijo y controlado por el código, nunca por datos externos.
+          icono.innerHTML = config.svg;
+
+          const numero = crearElemento(
+            "span",
+            "numero-division",
+            String(indice + 1).padStart(2, "0"),
+          );
+
+          cabecera.append(icono, numero);
+
+          // Contenido
+          const contenido = crearElemento("div", "contenido-division");
+
+          const categoria = crearElemento(
+            "span",
+            "categoria-division",
+            config.categoria,
+          );
+
+          const titulo = crearElemento("h3", "", nombre);
+
+          const textoDescripcion = crearElemento(
+            "p",
+            "descripcion-division",
+            descripcion ||
+              "Consulta información institucional relacionada con esta área.",
+          );
+
+          const ayuda = crearElemento(
+            "p",
+            "ayuda-asistia",
+            "Puedes consultar información y orientación institucional relacionada con esta división.",
+          );
+
+          // Botón
+          const boton = crearElemento(
+            "button",
+            "btn-consultar",
+            "Consultar esta división",
+          );
+
+          boton.type = "button";
+          boton.dataset.division = nombre;
+          boton.setAttribute(
+            "aria-label",
+            `Consultar información de ${nombre}`,
+          );
+
+          const flecha = document.createElement("span");
+          flecha.setAttribute("aria-hidden", "true");
+          flecha.textContent = "→";
+          boton.appendChild(flecha);
+
+          contenido.append(categoria, titulo, textoDescripcion, ayuda, boton);
+
+          tarjeta.append(cabecera, contenido);
+
+          return tarjeta;
+        }
+
+        // =====================================
+        // MOSTRAR DIVISIONES
+        // =====================================
+
+        function mostrarDivisiones(divisiones) {
+          grid.replaceChildren();
+
+          const tarjetas = divisiones
+            .map((division, indice) => crearTarjeta(division, indice))
+            .filter(Boolean);
+
+          if (contador) {
+            const cantidad = tarjetas.length;
+
+            contador.textContent = `${String(cantidad).padStart(2, "0")} divisiones`;
+
+            contador.setAttribute(
+              "aria-label",
+              `${cantidad} divisiones institucionales`,
+            );
+          }
+
+          if (tarjetas.length === 0) {
+            grid.appendChild(
+              crearElemento(
+                "p",
+                "mensaje-divisiones",
+                "Actualmente no hay divisiones institucionales activas.",
+              ),
+            );
+
+            return;
+          }
+
+          grid.append(...tarjetas);
+        }
+
+        // =====================================
+        // CARGAR DIVISIONES DESDE EL SERVIDOR
+        // =====================================
+
+        async function cargarDivisiones() {
+          try {
+            const respuesta = await fetch("/api/divisiones", {
+              method: "GET",
+              headers: {
+                Accept: "application/json",
+              },
+            });
+
+            if (!respuesta.ok) {
+              throw new Error(
+                `Error al consultar las divisiones: ${respuesta.status}`,
+              );
+            }
+
+            const resultado = await respuesta.json();
+
+            if (
+              resultado.success !== true ||
+              !resultado.data ||
+              !Array.isArray(resultado.data.divisiones)
+            ) {
+              throw new Error(
+                "La respuesta del servidor no tiene el formato esperado.",
+              );
+            }
+
+            mostrarDivisiones(resultado.data.divisiones);
+          } catch (error) {
+            console.error("AsistIA: Error cargando divisiones:", error);
+
+            grid.replaceChildren();
+
+            grid.appendChild(
+              crearElemento(
+                "p",
+                "mensaje-divisiones",
+                "No fue posible cargar las divisiones institucionales. Intenta actualizar la página.",
+              ),
+            );
+          } finally {
+            grid.setAttribute("aria-busy", "false");
+          }
+        }
+
+        // =====================================
+        // NAVEGACIÓN AL CHAT
+        // =====================================
+
+        grid.addEventListener("click", (evento) => {
+          const boton = evento.target.closest(".btn-consultar[data-division]");
+
+          if (!boton || !grid.contains(boton)) {
+            return;
+          }
+
+          const division = boton.dataset.division;
+
+          if (!division || !division.trim()) {
+            console.error("AsistIA: División no válida.");
+            return;
+          }
+
+          boton.disabled = true;
+
+          const destino = new URL("chat.html", window.location.href);
+          destino.searchParams.set("division", division);
+
+          window.location.assign(destino.href);
+        });
+
+        // =====================================
+        // INICIAR
+        // =====================================
+
+        cargarDivisiones();
+      })();
+    </script>
+  </body>
+</html>

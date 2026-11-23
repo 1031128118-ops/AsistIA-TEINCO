@@ -1,0 +1,1107 @@
+/* =========================================================
+   ASISTIA — TEINCO
+   ACCESO ADMINISTRATIVO
+   Extensión CSS responsive para admin-login.html
+   Diseño institucional oscuro — versión corregida
+========================================================= */
+
+/* =========================================================
+   1. VARIABLES
+========================================================= */
+
+:root {
+  --login-bg: #090a16;
+  --login-surface: rgba(18, 22, 44, 0.94);
+  --login-surface-soft: rgba(25, 30, 58, 0.78);
+
+  --login-border: rgba(167, 139, 250, 0.16);
+  --login-border-strong: rgba(167, 139, 250, 0.3);
+
+  --login-text: #f5f3ff;
+  --login-muted: #a3a6c0;
+  --login-subtle: #777d9d;
+
+  --login-purple: #8b5cf6;
+  --login-purple-light: #a78bfa;
+  --login-indigo: #6366f1;
+
+  --login-danger: #fb7185;
+}
+
+/* =========================================================
+   2. CONFIGURACIÓN GENERAL
+========================================================= */
+
+body:has(.tarjeta-formulario) {
+  position: relative;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+  overflow-x: hidden;
+
+  color: var(--login-text);
+
+  background:
+    radial-gradient(
+      ellipse at 50% 38%,
+      rgba(99, 102, 241, 0.12),
+      transparent 34rem
+    ),
+    radial-gradient(
+      ellipse at 8% 90%,
+      rgba(139, 92, 246, 0.09),
+      transparent 28rem
+    ),
+    var(--login-bg);
+
+  font-family: "DM Sans", sans-serif;
+}
+
+body:has(.tarjeta-formulario) *,
+body:has(.tarjeta-formulario) *::before,
+body:has(.tarjeta-formulario) *::after {
+  box-sizing: border-box;
+}
+
+body:has(.tarjeta-formulario) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body:has(.tarjeta-formulario) button,
+body:has(.tarjeta-formulario) input {
+  font: inherit;
+}
+
+body:has(.tarjeta-formulario) svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+/* =========================================================
+   3. FONDO DECORATIVO
+========================================================= */
+
+.background-effects {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  filter: blur(95px);
+  opacity: 0.19;
+}
+
+.ambient-one {
+  top: -210px;
+  left: calc(50% - 390px);
+  background: #7045dc;
+}
+
+.ambient-two {
+  right: -210px;
+  bottom: -240px;
+  background: #4546bd;
+  opacity: 0.15;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.13;
+
+  background-image:
+    linear-gradient(rgba(167, 139, 250, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 250, 0.1) 1px, transparent 1px);
+
+  background-size: 54px 54px;
+
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 85%);
+}
+
+/* =========================================================
+   4. BARRA SUPERIOR
+========================================================= */
+
+.barra-superior {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+
+  border-bottom: 1px solid rgba(167, 139, 250, 0.12);
+
+  background: rgba(9, 10, 22, 0.54);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.contenedor-barra {
+  display: flex;
+  width: min(1160px, calc(100% - 64px));
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.enlace-logo {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+/* =========================================================
+   LOGO OFICIAL ASISTIA
+   Imagen institucional
+========================================================= */
+
+.logo-icono {
+  display: grid;
+  width: 47px;
+  height: 47px;
+  flex: 0 0 47px;
+  place-items: center;
+  padding: 5px;
+  overflow: hidden;
+
+  background: linear-gradient(145deg, #a78bfa, #7045dc 62%, #5145c8);
+
+  border: 1px solid rgba(196, 181, 253, 0.38);
+  border-radius: 15px;
+
+  box-shadow:
+    0 8px 24px rgba(124, 81, 230, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.logo-icono img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  margin: 0;
+  padding: 0;
+}
+
+.marca-texto {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.nombre-app {
+  color: #fff;
+  font-family: "Manrope", sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+}
+
+.nombre-app span {
+  color: var(--login-purple-light);
+}
+
+.marca-descripcion {
+  color: #9297b4;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.15px;
+}
+
+.volver-inicio {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+
+  color: #b9bdd4 !important;
+  font-size: 11px;
+  font-weight: 600;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.volver-inicio svg {
+  width: 17px;
+  height: 17px;
+  color: var(--login-purple-light);
+
+  transition: transform 180ms ease;
+}
+
+.volver-inicio:hover {
+  color: #fff !important;
+  background: rgba(139, 92, 246, 0.09);
+  border-color: rgba(167, 139, 250, 0.17);
+}
+
+.volver-inicio:hover svg {
+  transform: translateX(-3px);
+}
+
+/* =========================================================
+   5. CENTRADO DEL FORMULARIO
+========================================================= */
+
+.contenedor-centro {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  width: 100%;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  padding: 46px 24px 50px;
+}
+
+.tarjeta-formulario {
+  position: relative;
+  width: min(100%, 465px);
+  padding: 37px 39px 29px;
+  overflow: hidden;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 29, 57, 0.97),
+    rgba(14, 18, 37, 0.97)
+  );
+
+  border: 1px solid rgba(167, 139, 250, 0.21);
+  border-radius: 23px;
+
+  box-shadow:
+    0 28px 85px rgba(0, 0, 0, 0.4),
+    0 0 55px rgba(109, 40, 217, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  animation: login-card-enter 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.tarjeta-formulario::before {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(196, 181, 253, 0.65),
+    transparent
+  );
+
+  content: "";
+}
+
+@keyframes login-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(13px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   6. IDENTIDAD DEL FORMULARIO
+========================================================= */
+
+.login-icono {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  margin: 0 auto 19px;
+
+  color: #d4c5ff;
+
+  background: linear-gradient(
+    145deg,
+    rgba(167, 139, 250, 0.22),
+    rgba(99, 102, 241, 0.12)
+  );
+
+  border: 1px solid rgba(167, 139, 250, 0.27);
+  border-radius: 17px;
+
+  box-shadow: 0 9px 25px rgba(109, 40, 217, 0.16);
+}
+
+.login-icono svg {
+  width: 28px;
+  height: 28px;
+}
+
+.login-encabezado {
+  margin-bottom: 27px;
+  text-align: center;
+}
+
+.login-encabezado .texto-superior {
+  display: inline-block;
+  margin-bottom: 9px;
+
+  color: var(--login-purple-light);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.login-encabezado h1 {
+  margin: 0;
+
+  color: #f8f6ff;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(24px, 4vw, 29px);
+  font-weight: 800;
+  letter-spacing: -0.9px;
+  line-height: 1.2;
+}
+
+.subtitulo-form {
+  max-width: 355px;
+  margin: 11px auto 0;
+
+  color: #a2a7c1;
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+/* =========================================================
+   7. ESTRUCTURA DE LOS CAMPOS
+========================================================= */
+
+#form-login-admin {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.grupo-form {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grupo-form > label,
+.label-con-accion > label {
+  color: #e2e0f2;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.label-con-accion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.campo-seguro {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #8f9cb7;
+  font-size: 9px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.campo-seguro svg {
+  width: 13px;
+  height: 13px;
+  color: #7dddb0;
+}
+
+/* =========================================================
+   8. CAMPOS DE USUARIO Y CONTRASEÑA
+   Un único contenedor exterior.
+   El input interior no tiene fondo ni borde propio.
+========================================================= */
+
+body:has(.tarjeta-formulario) .input-contenedor {
+  display: flex;
+  width: 100%;
+  min-height: 49px;
+  align-items: center;
+  gap: 11px;
+  padding: 0 13px;
+
+  background: rgba(8, 11, 25, 0.62);
+  border: 1px solid rgba(151, 156, 195, 0.19);
+  border-radius: 11px;
+
+  box-shadow: none;
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+/* Icono integrado al contenedor */
+
+body:has(.tarjeta-formulario) .input-contenedor > svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+
+  color: #9298b9;
+
+  transition: color 180ms ease;
+}
+
+/* INPUT SIN SEGUNDO RECUADRO */
+
+body:has(.tarjeta-formulario) .input-contenedor input,
+body:has(.tarjeta-formulario) .input-contenedor input[type="text"],
+body:has(.tarjeta-formulario) .input-contenedor input[type="email"],
+body:has(.tarjeta-formulario) .input-contenedor input[type="password"] {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 47px;
+
+  margin: 0;
+  padding: 0;
+
+  color: #f5f3ff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  line-height: normal;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+
+  outline: none !important;
+  box-shadow: none !important;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Placeholder */
+
+body:has(.tarjeta-formulario) .input-contenedor input::placeholder {
+  color: #737a99;
+  opacity: 1;
+}
+
+/* Evita el recuadro interior al enfocar el input */
+
+body:has(.tarjeta-formulario) .input-contenedor input:focus,
+body:has(.tarjeta-formulario) .input-contenedor input:focus-visible {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Efecto de enfoque aplicado únicamente al contenedor */
+
+body:has(.tarjeta-formulario) .input-contenedor:focus-within {
+  background: rgba(12, 15, 33, 0.88);
+  border-color: rgba(167, 139, 250, 0.72);
+
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.13);
+}
+
+body:has(.tarjeta-formulario) .input-contenedor:focus-within > svg {
+  color: var(--login-purple-light);
+}
+
+/* Autocompletado del navegador */
+
+body:has(.tarjeta-formulario) .input-contenedor input:-webkit-autofill,
+body:has(.tarjeta-formulario) .input-contenedor input:-webkit-autofill:hover,
+body:has(.tarjeta-formulario) .input-contenedor input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f5f3ff;
+
+  -webkit-box-shadow: 0 0 0 1000px #11152a inset !important;
+  box-shadow: 0 0 0 1000px #11152a inset !important;
+
+  border: none !important;
+  border-radius: 0 !important;
+
+  transition: background-color 9999s ease-out;
+}
+
+/* Estado de error */
+
+body:has(.tarjeta-formulario)
+  .input-contenedor:has(input[aria-invalid="true"]) {
+  border-color: rgba(251, 113, 133, 0.68);
+
+  box-shadow: 0 0 0 3px rgba(251, 113, 133, 0.09);
+}
+
+/* =========================================================
+   9. BOTÓN MOSTRAR / OCULTAR CONTRASEÑA
+========================================================= */
+
+.btn-mostrar-clave {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+
+  margin: 0;
+  padding: 0;
+
+  color: #969bb8;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 8px;
+
+  box-shadow: none !important;
+
+  cursor: pointer;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease;
+}
+
+.btn-mostrar-clave svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-mostrar-clave:hover {
+  color: #d4c5ff;
+  background: rgba(167, 139, 250, 0.1) !important;
+}
+
+.btn-mostrar-clave:focus-visible {
+  outline: 2px solid var(--login-purple-light);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   10. MENSAJES DE ERROR
+========================================================= */
+
+.mensaje-error {
+  display: block;
+  min-height: 0;
+
+  color: #ff9aaa;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.mensaje-error:empty {
+  display: none;
+}
+
+/* =========================================================
+   11. MENSAJE GENERAL
+========================================================= */
+
+.mensaje-login {
+  padding: 11px 13px;
+
+  color: #ffd69b;
+  font-size: 10px;
+  line-height: 1.6;
+
+  background: rgba(251, 191, 101, 0.09);
+  border: 1px solid rgba(251, 191, 101, 0.22);
+  border-radius: 10px;
+}
+
+.mensaje-login[hidden] {
+  display: none !important;
+}
+
+/* =========================================================
+   12. BOTÓN DE INGRESO
+========================================================= */
+
+.btn-principal {
+  display: flex;
+  width: 100%;
+  min-height: 49px;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+
+  margin-top: 3px;
+  padding: 0 17px;
+
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+
+  background: linear-gradient(110deg, #8b5cf6 0%, #7655e8 52%, #5d5cdb 100%);
+
+  border: 1px solid rgba(196, 181, 253, 0.28);
+  border-radius: 11px;
+
+  box-shadow: 0 9px 24px rgba(109, 40, 217, 0.25);
+
+  cursor: pointer;
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease,
+    opacity 180ms ease;
+}
+
+.btn-principal svg {
+  width: 18px;
+  height: 18px;
+
+  transition: transform 180ms ease;
+}
+
+.btn-principal:hover {
+  filter: brightness(1.09);
+
+  box-shadow: 0 12px 29px rgba(109, 40, 217, 0.35);
+
+  transform: translateY(-2px);
+}
+
+.btn-principal:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-principal:active {
+  transform: translateY(0);
+}
+
+.btn-principal:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+  filter: saturate(0.7);
+
+  box-shadow: none;
+  transform: none;
+}
+
+/* =========================================================
+   13. DIVISOR Y SOLICITUD DE CUENTA
+========================================================= */
+
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  margin: 25px 0 20px;
+
+  color: #777e9d;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.35px;
+  white-space: nowrap;
+}
+
+.separador::before,
+.separador::after {
+  height: 1px;
+  flex: 1;
+
+  background: rgba(167, 139, 250, 0.14);
+
+  content: "";
+}
+
+.crear-cuenta {
+  text-align: center;
+}
+
+.crear-cuenta p {
+  margin: 0 0 11px;
+
+  color: #a0a5bf;
+  font-size: 10px;
+}
+
+.btn-secundario {
+  display: flex;
+  width: 100%;
+  min-height: 43px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 8px 13px;
+
+  color: #d8ceff !important;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+
+  background: rgba(139, 92, 246, 0.075);
+
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 10px;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.btn-secundario span {
+  color: var(--login-purple-light);
+  font-size: 16px;
+  line-height: 1;
+
+  transition: transform 180ms ease;
+}
+
+.btn-secundario:hover {
+  color: #fff !important;
+
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(167, 139, 250, 0.4);
+
+  transform: translateY(-1px);
+}
+
+.btn-secundario:hover span {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   14. AVISO DE SEGURIDAD
+========================================================= */
+
+.nota-seguridad {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+
+  margin-top: 22px;
+  padding: 12px;
+
+  background: rgba(99, 102, 241, 0.065);
+
+  border: 1px solid rgba(129, 140, 248, 0.13);
+  border-radius: 10px;
+}
+
+.nota-seguridad svg {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+
+  color: #a5a5f8;
+}
+
+.nota-seguridad p {
+  margin: 0;
+
+  color: #9298b4;
+  font-size: 9px;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   15. PIE DE PÁGINA
+========================================================= */
+
+.pie-pagina {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  min-height: 57px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 20px;
+
+  color: #747b99;
+  font-size: 9px;
+  font-weight: 600;
+  text-align: center;
+
+  border-top: 1px solid rgba(167, 139, 250, 0.09);
+
+  background: rgba(9, 10, 22, 0.34);
+}
+
+.footer-separator {
+  color: #a78bfa;
+}
+
+/* =========================================================
+   16. ESTADOS DE FOCO Y ACCESIBILIDAD
+========================================================= */
+
+body:has(.tarjeta-formulario) :focus-visible {
+  outline: 2px solid #b7a0ff;
+  outline-offset: 3px;
+}
+
+body:has(.tarjeta-formulario) .input-contenedor input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* =========================================================
+   17. TABLET
+========================================================= */
+
+@media (max-width: 700px) {
+  .contenedor-barra {
+    width: min(calc(100% - 40px), 560px);
+    min-height: 72px;
+  }
+
+  .contenedor-centro {
+    padding: 35px 20px 40px;
+  }
+
+  .tarjeta-formulario {
+    padding: 32px 30px 25px;
+  }
+}
+
+/* =========================================================
+   18. MÓVIL
+========================================================= */
+
+@media (max-width: 480px) {
+  .contenedor-barra {
+    width: calc(100% - 30px);
+    min-height: 66px;
+  }
+
+  .logo-icono {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+    padding: 4px;
+
+    border-radius: 12px;
+  }
+
+  .nombre-app {
+    font-size: 19px;
+  }
+
+  .marca-descripcion {
+    font-size: 7px;
+    letter-spacing: 0.9px;
+  }
+
+  .volver-inicio {
+    min-height: 36px;
+    gap: 6px;
+    padding: 0 7px;
+
+    font-size: 9px;
+  }
+
+  .volver-inicio svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .contenedor-centro {
+    align-items: flex-start;
+    padding: 27px 14px 31px;
+  }
+
+  .tarjeta-formulario {
+    width: 100%;
+    padding: 28px 21px 22px;
+
+    border-radius: 19px;
+  }
+
+  .login-icono {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 16px;
+
+    border-radius: 15px;
+  }
+
+  .login-icono svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .login-encabezado {
+    margin-bottom: 23px;
+  }
+
+  .login-encabezado h1 {
+    font-size: 24px;
+  }
+
+  .subtitulo-form {
+    font-size: 10px;
+  }
+
+  #form-login-admin {
+    gap: 16px;
+  }
+
+  body:has(.tarjeta-formulario) .input-contenedor {
+    min-height: 47px;
+    padding: 0 11px;
+  }
+
+  body:has(.tarjeta-formulario) .input-contenedor input {
+    height: 45px;
+    font-size: 11px;
+  }
+
+  .btn-principal {
+    min-height: 47px;
+  }
+
+  .pie-pagina {
+    min-height: 52px;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    font-size: 8px;
+  }
+}
+
+/* =========================================================
+   19. MÓVIL ESTRECHO
+========================================================= */
+
+@media (max-width: 360px) {
+  .contenedor-barra {
+    width: calc(100% - 22px);
+  }
+
+  .enlace-logo {
+    gap: 8px;
+  }
+
+  .marca-descripcion {
+    max-width: 125px;
+    font-size: 6px;
+  }
+
+  .volver-inicio {
+    gap: 4px;
+    font-size: 8px;
+  }
+
+  .tarjeta-formulario {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .login-encabezado h1 {
+    font-size: 22px;
+  }
+
+  .label-con-accion {
+    align-items: flex-start;
+  }
+
+  .campo-seguro {
+    font-size: 8px;
+  }
+}
+
+/* =========================================================
+   20. PANTALLAS BAJAS
+========================================================= */
+
+@media (max-height: 760px) and (min-width: 701px) {
+  .contenedor-centro {
+    padding-top: 26px;
+    padding-bottom: 26px;
+  }
+
+  .tarjeta-formulario {
+    padding-top: 27px;
+    padding-bottom: 23px;
+  }
+
+  .login-icono {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 13px;
+  }
+
+  .login-encabezado {
+    margin-bottom: 19px;
+  }
+
+  #form-login-admin {
+    gap: 14px;
+  }
+
+  .separador {
+    margin-top: 19px;
+    margin-bottom: 15px;
+  }
+
+  .nota-seguridad {
+    margin-top: 17px;
+  }
+}
+
+/* =========================================================
+   21. MOVIMIENTO REDUCIDO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(.tarjeta-formulario) *,
+  body:has(.tarjeta-formulario) *::before,
+  body:has(.tarjeta-formulario) *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- =====================================
+         CONFIGURACIÓN GENERAL
+    ====================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Acceso seguro al panel administrativo de AsistIA."
+    />
+    <meta name="theme-color" content="#090a16" />
+
+    <title>AsistIA | Acceso administrativo</title>
+
+    <!-- TIPOGRAFÍAS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin-login.css" />
+
+    <!-- AUTENTICACIÓN ADMINISTRATIVA -->
+    <script src="js/auth.js" defer></script>
+  </head>
+
+  <body>
+    <!-- =====================================
+         FONDO DECORATIVO
+    ====================================== -->
+
+    <div class="background-effects" aria-hidden="true">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <!-- =====================================
+         BARRA SUPERIOR
+    ====================================== -->
+
+    <header class="barra-superior">
+      <div class="contenedor-barra">
+        <a
+          href="index.html"
+          class="enlace-logo"
+          aria-label="Volver al inicio de AsistIA"
+        >
+          <div class="logo-icono">
+            <img src="assets/img/logo-asistia.png" alt="Logo de AsistIA" />
+          </div>
+
+          <div class="marca-texto">
+            <span class="nombre-app">Asist<span>IA</span></span>
+            <span class="marca-descripcion"> ASISTENTE INSTITUCIONAL </span>
+          </div>
+        </a>
+
+        <a href="index.html" class="volver-inicio">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M19 12H5m7 7-7-7 7-7"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <span>Volver al inicio</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- =====================================
+         CONTENIDO PRINCIPAL
+    ====================================== -->
+
+    <main class="contenedor-centro">
+      <section class="tarjeta-formulario" aria-labelledby="titulo-login">
+        <!-- IDENTIDAD DEL FORMULARIO -->
+
+        <div class="login-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect
+              x="4"
+              y="10"
+              width="16"
+              height="11"
+              rx="2.5"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+
+            <path
+              d="M8 10V7a4 4 0 1 1 8 0v3"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+
+            <circle cx="12" cy="15" r="1.2" fill="currentColor" />
+
+            <path
+              d="M12 16.2v1"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+
+        <div class="login-encabezado">
+          <span class="texto-superior">ÁREA RESTRINGIDA</span>
+
+          <h1 id="titulo-login">Acceso administrativo</h1>
+
+          <p class="subtitulo-form">
+            Ingresa tus credenciales institucionales para acceder a las
+            herramientas de administración de AsistIA.
+          </p>
+        </div>
+
+        <!-- =====================================
+             FORMULARIO DE ACCESO
+        ====================================== -->
+
+        <form id="form-login-admin" method="post" novalidate>
+          <!-- USUARIO O CORREO -->
+
+          <div class="grupo-form">
+            <label for="usuario-admin"> Usuario o correo electrónico </label>
+
+            <div class="input-contenedor">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle
+                  cx="12"
+                  cy="8"
+                  r="4"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+
+                <path
+                  d="M4 21a8 8 0 0 1 16 0"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+
+              <input
+                type="text"
+                id="usuario-admin"
+                name="usuario"
+                placeholder="Ingresa tu usuario"
+                autocomplete="username"
+                maxlength="120"
+                required
+                aria-describedby="error-usuario"
+              />
+            </div>
+
+            <small
+              class="mensaje-error"
+              id="error-usuario"
+              aria-live="polite"
+            ></small>
+          </div>
+
+          <!-- CONTRASEÑA -->
+
+          <div class="grupo-form">
+            <div class="label-con-accion">
+              <label for="clave-admin"> Contraseña </label>
+
+              <span class="campo-seguro">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M12 3.5 19 7v5.1c0 4.2-2.9 7.3-7 8.9-4.1-1.6-7-4.7-7-8.9V7l7-3.5Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                </svg>
+
+                Acceso protegido
+              </span>
+            </div>
+
+            <div class="input-contenedor">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect
+                  x="4"
+                  y="10"
+                  width="16"
+                  height="11"
+                  rx="2.5"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+
+                <path
+                  d="M8 10V7a4 4 0 1 1 8 0v3"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+
+              <input
+                type="password"
+                id="clave-admin"
+                name="password"
+                placeholder="Ingresa tu contraseña"
+                autocomplete="current-password"
+                minlength="12"
+                maxlength="128"
+                required
+                aria-describedby="error-clave"
+              />
+
+              <button
+                type="button"
+                class="btn-mostrar-clave"
+                id="btn-mostrar-clave"
+                aria-label="Mostrar contraseña"
+                aria-pressed="false"
+              >
+                <svg
+                  id="icono-mostrar"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="2.5"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <small
+              class="mensaje-error"
+              id="error-clave"
+              aria-live="polite"
+            ></small>
+          </div>
+
+          <!-- MENSAJE GENERAL -->
+
+          <div
+            class="mensaje-login"
+            id="mensaje-login"
+            role="alert"
+            aria-live="polite"
+            hidden
+          ></div>
+
+          <!-- BOTÓN DE ACCESO -->
+
+          <button type="submit" class="btn-principal" id="btn-ingresar">
+            <span id="texto-ingresar"> Ingresar al panel </span>
+
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14m-6-6 6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </form>
+
+        <!-- =====================================
+             DIVISOR
+        ====================================== -->
+
+        <div class="separador">
+          <span>ACCESO INSTITUCIONAL</span>
+        </div>
+
+        <!-- =====================================
+             SOLICITUD DE CUENTA
+        ====================================== -->
+
+        <div class="crear-cuenta">
+          <p>¿Necesitas una cuenta administrativa?</p>
+
+          <a href="admin-crear-cuenta.html" class="btn-secundario">
+            Solicitar acceso administrativo
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <!-- =====================================
+             AVISO DE SEGURIDAD
+        ====================================== -->
+
+        <div class="nota-seguridad">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 3.5 19 7v5.1c0 4.2-2.9 7.3-7 8.9-4.1-1.6-7-4.7-7-8.9V7l7-3.5Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+
+            <path
+              d="m9 12 2 2 4-4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <p>
+            Este espacio es exclusivo para personal autorizado de TEINCO. No
+            compartas tus credenciales de acceso.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================
+         PIE DE PÁGINA
+    ====================================== -->
+
+    <footer class="pie-pagina">
+      <span> © <span id="current-year"></span> TEINCO </span>
+
+      <span class="footer-separator" aria-hidden="true">·</span>
+
+      <span> AsistIA — Acceso administrativo </span>
+    </footer>
+
+    <!-- AÑO ACTUAL -->
+    <script>
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- =====================================
+         CONFIGURACIÓN GENERAL
+    ====================================== -->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Panel administrativo de gestión de divisiones de AsistIA."
+    />
+    <meta name="theme-color" content="#090a16" />
+
+    <title>AsistIA | Gestión de divisiones</title>
+
+    <!-- TIPOGRAFÍAS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ESTILOS -->
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin-divisiones.css" />
+
+    <!-- AUTENTICACIÓN Y PROTECCIÓN ADMINISTRATIVA -->
+
+    <script src="js/auth.js" defer></script>
+
+    <!-- FUNCIONALIDAD DE GESTIÓN DE DIVISIONES -->
+
+    <script src="js/admin-divisiones.js" defer></script>
+  </head>
+
+  <body>
+    <div class="contenedor-admin">
+      <!-- =====================================
+           BARRA LATERAL
+      ====================================== -->
+
+      <aside
+        class="barra-lateral"
+        id="barra-lateral"
+        aria-label="Panel de navegación"
+      >
+        <!-- LOGO -->
+
+        <a href="admin-reportes.html" class="logo-lateral">
+          <div class="logo-icono">
+            <img src="assets/img/logo-asistia.png" alt="Logo de AsistIA" />
+          </div>
+
+          <div class="logo-texto">
+            <strong>Asist<span>IA</span></strong>
+            <small>PANEL ADMINISTRATIVO</small>
+          </div>
+        </a>
+
+        <!-- NAVEGACIÓN ADMINISTRATIVA -->
+
+        <nav class="menu-lateral" aria-label="Menú administrativo">
+          <span class="titulo-menu">GENERAL</span>
+
+          <!-- REPORTES -->
+
+          <a href="admin-reportes.html" class="item-menu">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect
+                x="3"
+                y="3"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="13"
+                y="3"
+                width="8"
+                height="5"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="13"
+                y="10"
+                width="8"
+                height="11"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="3"
+                y="13"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+
+            <span>Reportes y estadísticas</span>
+          </a>
+
+          <!-- DIVISIONES -->
+
+          <a
+            href="admin-divisiones.html"
+            class="item-menu activo"
+            aria-current="page"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect
+                x="3"
+                y="3"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="13"
+                y="3"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="3"
+                y="13"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="13"
+                y="13"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+
+            <span>Divisiones</span>
+          </a>
+
+          <!-- CUENTA -->
+
+          <span class="titulo-menu titulo-menu-inferior"> CUENTA </span>
+
+          <button
+            type="button"
+            class="item-menu item-cerrar-sesion"
+            id="btn-cerrar-sesion"
+            aria-label="Cerrar sesión administrativa"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M10 17l5-5-5-5M15 12H3"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+
+            <span>Cerrar sesión</span>
+          </button>
+        </nav>
+
+        <!-- INFORMACIÓN DEL SISTEMA -->
+
+        <div class="sidebar-footer">
+          <div class="sidebar-status">
+            <span class="status-indicator" aria-hidden="true"></span>
+
+            <span>AsistIA institucional</span>
+          </div>
+
+          <small> Corporación Tecnológica Industrial Colombiana </small>
+        </div>
+      </aside>
+
+      <!-- =====================================
+           CONTENIDO ADMINISTRATIVO
+      ====================================== -->
+
+      <main class="contenido-admin">
+        <!-- CABECERA -->
+
+        <header class="cabecera-admin">
+          <div class="cabecera-titulo">
+            <div class="breadcrumb" aria-label="Ubicación actual">
+              <span>Administración</span>
+              <span aria-hidden="true">/</span>
+              <strong>Divisiones</strong>
+            </div>
+
+            <h1>Gestión de divisiones</h1>
+
+            <p>
+              Administra las divisiones institucionales y organiza la
+              información que utiliza el asistente virtual AsistIA.
+            </p>
+          </div>
+
+          <div class="acciones-cabecera">
+            <!-- FECHA ACTUAL -->
+
+            <div class="fecha-actual">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="16"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M7 3v4M17 3v4M3 10h18"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+
+              <span id="fecha-actual" aria-live="polite">
+                Cargando fecha...
+              </span>
+            </div>
+
+            <!-- NUEVA DIVISIÓN -->
+
+            <button type="button" class="btn-primario" id="btn-nueva-division">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 5v14M5 12h14"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+
+              <span>Nueva división</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- =====================================
+             INDICADORES PRINCIPALES
+        ====================================== -->
+
+        <section class="seccion-resumen" aria-labelledby="titulo-resumen">
+          <div class="encabezado-seccion">
+            <div>
+              <span class="texto-superior">RESUMEN GENERAL</span>
+              <h2 id="titulo-resumen">Estado de las divisiones</h2>
+            </div>
+          </div>
+
+          <div class="cuadricula-resumen">
+            <!-- TOTAL DE DIVISIONES -->
+
+            <article class="tarjeta-resumen">
+              <div class="resumen-superior">
+                <span class="resumen-etiqueta"> Total de divisiones </span>
+
+                <div class="resumen-icono icono-consultas">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="8"
+                      height="8"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <rect
+                      x="13"
+                      y="3"
+                      width="8"
+                      height="8"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <rect
+                      x="3"
+                      y="13"
+                      width="8"
+                      height="8"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <rect
+                      x="13"
+                      y="13"
+                      width="8"
+                      height="8"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <strong
+                class="numero-grande"
+                id="total-divisiones"
+                aria-live="polite"
+                >—</strong
+              >
+
+              <span class="resumen-descripcion"> Divisiones registradas </span>
+            </article>
+
+            <!-- DIVISIONES ACTIVAS -->
+
+            <article class="tarjeta-resumen">
+              <div class="resumen-superior">
+                <span class="resumen-etiqueta"> Divisiones activas </span>
+
+                <div class="resumen-icono icono-respuestas">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="m8 12 2.5 2.5L16 9"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <strong
+                class="numero-grande"
+                id="divisiones-activas"
+                aria-live="polite"
+                >—</strong
+              >
+
+              <span class="resumen-descripcion"> Disponibles en AsistIA </span>
+            </article>
+
+            <!-- DIVISIONES INACTIVAS -->
+
+            <article class="tarjeta-resumen">
+              <div class="resumen-superior">
+                <span class="resumen-etiqueta"> Divisiones inactivas </span>
+
+                <div class="resumen-icono icono-pendientes">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="M8 12h8"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <strong
+                class="numero-grande"
+                id="divisiones-inactivas"
+                aria-live="polite"
+                >—</strong
+              >
+
+              <span class="resumen-descripcion">
+                Pendientes de habilitación
+              </span>
+            </article>
+
+            <!-- TOTAL DE DOCUMENTOS -->
+
+            <article class="tarjeta-resumen">
+              <div class="resumen-superior">
+                <span class="resumen-etiqueta"> Documentos asociados </span>
+
+                <div class="resumen-icono icono-division">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M6 3h8l5 5v13H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14 3v5h5M8 13h8M8 17h8"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <strong
+                class="numero-grande"
+                id="total-documentos"
+                aria-live="polite"
+                >—</strong
+              >
+
+              <span class="resumen-descripcion">
+                Archivos institucionales
+              </span>
+            </article>
+          </div>
+        </section>
+
+        <!-- =====================================
+             GESTIÓN DE DIVISIONES
+        ====================================== -->
+
+        <section class="seccion-divisiones" aria-labelledby="titulo-divisiones">
+          <div class="encabezado-seccion">
+            <div>
+              <span class="texto-superior"> ORGANIZACIÓN INSTITUCIONAL </span>
+
+              <h2 id="titulo-divisiones">Divisiones registradas</h2>
+
+              <p>
+                Administra las áreas encargadas de proporcionar información
+                institucional.
+              </p>
+            </div>
+          </div>
+
+          <!-- BUSCADOR Y FILTROS -->
+
+          <div class="controles-divisiones">
+            <div class="buscador-divisiones">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="7"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                />
+                <path
+                  d="m16 16 4 4"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                />
+              </svg>
+
+              <input
+                type="search"
+                id="buscar-division"
+                name="buscar-division"
+                placeholder="Buscar división..."
+                aria-label="Buscar división"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="filtros-divisiones">
+              <label for="filtro-estado" class="sr-only">
+                Filtrar divisiones por estado
+              </label>
+
+              <select id="filtro-estado" class="filtro-division" name="estado">
+                <option value="">Todos los estados</option>
+                <option value="activa">Activas</option>
+                <option value="inactiva">Inactivas</option>
+              </select>
+
+              <button
+                type="button"
+                class="btn-secundario"
+                id="btn-actualizar-divisiones"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M20 7v5h-5M4 17v-5h5"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M5.5 9a7 7 0 0 1 12-2L20 12M4 12l2.5 5a7 7 0 0 0 12-2"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <span>Actualizar</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TARJETAS DE DIVISIONES -->
+
+          <div class="cuadricula-divisiones" id="lista-divisiones">
+            <!-- DIVISIÓN: ADMISIONES -->
+
+            <article class="tarjeta-division" data-division="Admisiones">
+              <div class="division-superior">
+                <div class="division-icono">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 3 3 8v2h18V8l-9-5ZM5 10v9m4-9v9m6-9v9m4-9v9M3 21h18"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                <span class="estado-division activa"> Activa </span>
+              </div>
+
+              <h3>Admisiones</h3>
+
+              <p>
+                Información sobre procesos de inscripción, requisitos de
+                ingreso, matrículas y oferta académica.
+              </p>
+
+              <div class="division-estadisticas">
+                <div>
+                  <strong id="consultas-admisiones">—</strong>
+                  <span>Consultas</span>
+                </div>
+
+                <div>
+                  <strong id="documentos-admisiones">—</strong>
+                  <span>Documentos</span>
+                </div>
+              </div>
+
+              <div class="division-acciones">
+                <button
+                  type="button"
+                  class="btn-secundario btn-ver-division"
+                  data-id="admisiones"
+                >
+                  Ver detalles
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-icono-accion btn-editar-division"
+                  data-id="admisiones"
+                  aria-label="Editar Admisiones"
+                  title="Editar división"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="m14 5 5 5M4 20l4-.8L19 8a2.1 2.1 0 0 0-3-3L5 16l-1 4Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+            <!-- DIVISIÓN: REGISTRO Y CONTROL -->
+
+            <article
+              class="tarjeta-division"
+              data-division="Registro y Control"
+            >
+              <div class="division-superior">
+                <div class="division-icono">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M6 3h12a2 2 0 0 1 2 2v16H4V5a2 2 0 0 1 2-2Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="M8 8h8M8 12h8M8 16h5"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <span class="estado-division activa"> Activa </span>
+              </div>
+
+              <h3>Registro y Control</h3>
+
+              <p>
+                Orientación sobre certificados, historial académico,
+                calificaciones, trámites y procesos estudiantiles.
+              </p>
+
+              <div class="division-estadisticas">
+                <div>
+                  <strong id="consultas-registro">—</strong>
+                  <span>Consultas</span>
+                </div>
+
+                <div>
+                  <strong id="documentos-registro">—</strong>
+                  <span>Documentos</span>
+                </div>
+              </div>
+
+              <div class="division-acciones">
+                <button
+                  type="button"
+                  class="btn-secundario btn-ver-division"
+                  data-id="registro"
+                >
+                  Ver detalles
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-icono-accion btn-editar-division"
+                  data-id="registro"
+                  aria-label="Editar Registro y Control"
+                  title="Editar división"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="m14 5 5 5M4 20l4-.8L19 8a2.1 2.1 0 0 0-3-3L5 16l-1 4Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+            <!-- DIVISIÓN: BIENESTAR INSTITUCIONAL -->
+
+            <article
+              class="tarjeta-division"
+              data-division="Bienestar Institucional"
+            >
+              <div class="division-superior">
+                <div class="division-icono">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 12h2l1-2 2 4 1-2h2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                <span class="estado-division activa"> Activa </span>
+              </div>
+
+              <h3>Bienestar Institucional</h3>
+
+              <p>
+                Información sobre actividades, acompañamiento, servicios
+                estudiantiles, cultura y bienestar.
+              </p>
+
+              <div class="division-estadisticas">
+                <div>
+                  <strong id="consultas-bienestar">—</strong>
+                  <span>Consultas</span>
+                </div>
+
+                <div>
+                  <strong id="documentos-bienestar">—</strong>
+                  <span>Documentos</span>
+                </div>
+              </div>
+
+              <div class="division-acciones">
+                <button
+                  type="button"
+                  class="btn-secundario btn-ver-division"
+                  data-id="bienestar"
+                >
+                  Ver detalles
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-icono-accion btn-editar-division"
+                  data-id="bienestar"
+                  aria-label="Editar Bienestar Institucional"
+                  title="Editar división"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="m14 5 5 5M4 20l4-.8L19 8a2.1 2.1 0 0 0-3-3L5 16l-1 4Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+            <!-- DIVISIÓN: COORDINACIÓN ACADÉMICA -->
+
+            <article
+              class="tarjeta-division"
+              data-division="Coordinación Académica"
+            >
+              <div class="division-superior">
+                <div class="division-icono">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="m2 9 10-5 10 5-10 5L2 9Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M6 11v5c3 3 9 3 12 0v-5M22 9v7"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <span class="estado-division activa"> Activa </span>
+              </div>
+
+              <h3>Coordinación Académica</h3>
+
+              <p>
+                Orientación sobre programas académicos, horarios, docentes,
+                asignaturas y procesos académicos.
+              </p>
+
+              <div class="division-estadisticas">
+                <div>
+                  <strong id="consultas-academica">—</strong>
+                  <span>Consultas</span>
+                </div>
+
+                <div>
+                  <strong id="documentos-academica">—</strong>
+                  <span>Documentos</span>
+                </div>
+              </div>
+
+              <div class="division-acciones">
+                <button
+                  type="button"
+                  class="btn-secundario btn-ver-division"
+                  data-id="academica"
+                >
+                  Ver detalles
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-icono-accion btn-editar-division"
+                  data-id="academica"
+                  aria-label="Editar Coordinación Académica"
+                  title="Editar división"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="m14 5 5 5M4 20l4-.8L19 8a2.1 2.1 0 0 0-3-3L5 16l-1 4Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <!-- ESTADO VACÍO -->
+
+          <div
+            class="estado-vacio-divisiones"
+            id="estado-vacio-divisiones"
+            role="status"
+            aria-live="polite"
+            hidden
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="11"
+                cy="11"
+                r="7"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <path
+                d="m16 16 4 4"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+
+            <strong>No se encontraron divisiones</strong>
+
+            <span>
+              Intenta modificar los filtros o el término de búsqueda.
+            </span>
+          </div>
+        </section>
+
+        <!-- =====================================
+             DOCUMENTOS DE LAS DIVISIONES
+        ====================================== -->
+
+        <section class="tarjeta-tabla" aria-labelledby="titulo-documentos">
+          <div class="tabla-encabezado">
+            <div>
+              <span class="texto-superior"> RECURSOS INSTITUCIONALES </span>
+
+              <h2 id="titulo-documentos">Documentos de las divisiones</h2>
+
+              <p>
+                Consulta los archivos que respaldan la información institucional
+                de AsistIA.
+              </p>
+            </div>
+
+            <div class="tabla-controles">
+              <!-- FILTRO DE DOCUMENTOS -->
+
+              <label for="filtro-documentos" class="sr-only">
+                Filtrar documentos por división
+              </label>
+
+              <select
+                id="filtro-documentos"
+                class="filtro-division"
+                name="division-documentos"
+              >
+                <option value="">Todas las divisiones</option>
+
+                <option value="Admisiones">Admisiones</option>
+
+                <option value="Registro y Control">Registro y Control</option>
+
+                <option value="Bienestar Institucional">
+                  Bienestar Institucional
+                </option>
+
+                <option value="Coordinación Académica">
+                  Coordinación Académica
+                </option>
+              </select>
+
+              <!-- SUBIR DOCUMENTO -->
+
+              <button
+                type="button"
+                class="btn-secundario"
+                id="btn-subir-documento"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M12 16V4m-5 5 5-5 5 5"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M5 16v4h14v-4"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <span>Subir documento</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TABLA DE DOCUMENTOS -->
+
+          <div class="tabla-contenedor">
+            <table class="tabla-conversaciones">
+              <caption class="sr-only">
+                Documentos institucionales registrados por división.
+              </caption>
+
+              <thead>
+                <tr>
+                  <th scope="col">Documento</th>
+                  <th scope="col">División</th>
+                  <th scope="col">Formato</th>
+                  <th scope="col">Fecha de registro</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody id="cuerpo-tabla-documentos">
+                <tr class="fila-vacia">
+                  <td colspan="5">
+                    <div class="estado-vacio">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M6 3h8l5 5v13H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M14 3v5h5M8 13h8M8 17h6"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+
+                      <strong> No hay documentos registrados </strong>
+
+                      <span>
+                        Los documentos institucionales aparecerán aquí cuando se
+                        conecte el sistema de gestión documental.
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- PIE DE TABLA -->
+
+          <div class="tabla-pie">
+            <span id="total-documentos-tabla" aria-live="polite">
+              0 documentos
+            </span>
+
+            <span> Repositorio de información institucional </span>
+          </div>
+        </section>
+
+        <!-- =====================================
+             NOTA INFORMATIVA
+        ====================================== -->
+
+        <div class="nota-administrativa">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+
+            <path
+              d="M12 11v5m0-8h.01"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+
+          <p>
+            Las divisiones y sus documentos deben corresponder a información
+            institucional autorizada y verificable. Los cambios realizados deben
+            mantenerse sincronizados con las fuentes de conocimiento utilizadas
+            por AsistIA.
+          </p>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- =========================================
+         CONFIGURACIÓN GENERAL
+    ========================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="AsistIA, asistente virtual de información institucional de TEINCO. Encuentra orientación sobre servicios, dependencias y procesos institucionales."
+    />
+
+    <meta name="theme-color" content="#090a16" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="author" content="TEINCO" />
+    <meta name="robots" content="index, follow" />
+
+    <title>AsistIA | Asistente institucional TEINCO</title>
+
+    <!-- =========================================
+         FUENTES TIPOGRÁFICAS
+    ========================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =========================================
+         HOJAS DE ESTILOS
+    ========================================== -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/inicio.css" />
+  </head>
+
+  <body>
+    <!-- =========================================
+         FONDO DECORATIVO
+    ========================================== -->
+    <div class="background-effects" aria-hidden="true">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <!-- =========================================
+         ENCABEZADO PRINCIPAL
+    ========================================== -->
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="AsistIA, ir al inicio">
+        <div class="brand-mark">
+          <img src="/assets/img/logo-asistia.png" alt="Logo de AsistIA" />
+        </div>
+
+        <div class="brand-copy">
+          <span class="brand-name">Asist<span>IA</span></span>
+          <span class="brand-caption">ASISTENTE INSTITUCIONAL</span>
+        </div>
+      </a>
+    </header>
+
+    <!-- =========================================
+         CONTENIDO PRINCIPAL
+    ========================================== -->
+    <main class="main-container">
+      <section class="welcome-section" aria-labelledby="welcome-title">
+        <!-- =====================================
+             PRESENTACIÓN INSTITUCIONAL
+        ====================================== -->
+        <div class="welcome-content">
+          <div class="eyebrow">
+            <span class="eyebrow-line" aria-hidden="true"></span>
+            <span>TEINCO · ATENCIÓN DIGITAL</span>
+          </div>
+
+          <h1 id="welcome-title">
+            La información que necesitas,
+            <span>en un solo lugar.</span>
+          </h1>
+
+          <p class="welcome-description">
+            Bienvenido a AsistIA, tu asistente virtual de información
+            institucional. Encuentra orientación sobre los servicios,
+            dependencias y procesos de TEINCO de forma sencilla, rápida y
+            oportuna.
+          </p>
+        </div>
+
+        <!-- =====================================
+             TARJETA DE ACCESO
+        ====================================== -->
+        <section class="access-card" aria-labelledby="access-title">
+          <!-- ENCABEZADO DE LA TARJETA -->
+          <div class="card-heading">
+            <div>
+              <span class="section-label"> ACCESO A LA PLATAFORMA </span>
+
+              <h2 id="access-title">¿Cómo deseas ingresar?</h2>
+
+              <p>Selecciona el perfil correspondiente para continuar.</p>
+            </div>
+
+            <!-- ICONO DE SEGURIDAD -->
+            <div class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 3.5 19 7v5.1c0 4.2-2.9 7.3-7 8.9-4.1-1.6-7-4.7-7-8.9V7l7-3.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="m9 12 2 2 4-4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- =================================
+               SELECCIÓN DE PERFILES
+          ================================== -->
+          <div
+            class="role-list"
+            role="group"
+            aria-label="Selecciona tu perfil institucional"
+          >
+            <!-- PERFIL COMUNIDAD -->
+            <button
+              type="button"
+              class="role-option"
+              id="rol-comunidad"
+              data-role="comunidad"
+              aria-pressed="false"
+            >
+              <span class="role-icon community-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+
+                  <circle
+                    cx="9.5"
+                    cy="7"
+                    r="3.5"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+
+                  <path
+                    d="M16 11a3.5 3.5 0 0 0 0-7M17 14.5a4 4 0 0 1 4 4V20"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="role-information">
+                <strong>Comunidad educativa</strong>
+
+                <small>
+                  Estudiantes, docentes, visitantes y público general.
+                </small>
+              </span>
+
+              <span class="role-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="m5 12 4.5 4.5L19 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </button>
+
+            <!-- PERFIL ADMINISTRADOR -->
+            <button
+              type="button"
+              class="role-option"
+              id="rol-admin"
+              data-role="admin"
+              aria-pressed="false"
+            >
+              <span class="role-icon admin-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="4"
+                    y="10"
+                    width="16"
+                    height="11"
+                    rx="2.5"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+
+                  <path
+                    d="M8 10V7a4 4 0 1 1 8 0v3"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+
+                  <circle cx="12" cy="15.5" r="1.2" fill="currentColor" />
+
+                  <path
+                    d="M12 16.7v1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+
+              <span class="role-information">
+                <strong>Administrador</strong>
+
+                <small>
+                  Acceso exclusivo para personal autorizado de TEINCO.
+                </small>
+              </span>
+
+              <span class="role-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="m5 12 4.5 4.5L19 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- =================================
+               MENSAJE DE SELECCIÓN
+          ================================== -->
+          <p
+            class="selection-message"
+            id="selection-message"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            Selecciona una opción para habilitar el acceso.
+          </p>
+
+          <!-- =================================
+               BOTÓN CONTINUAR
+          ================================== -->
+          <button
+            type="button"
+            class="continue-button"
+            id="btn-continuar"
+            aria-describedby="selection-message"
+            disabled
+          >
+            <span>Continuar</span>
+
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14m-6-6 6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <!-- =================================
+               SEGURIDAD
+          ================================== -->
+          <div class="card-security">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 3.5 19 7v5.1c0 4.2-2.9 7.3-7 8.9-4.1-1.6-7-4.7-7-8.9V7l7-3.5Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+
+            <span>Acceso según tu perfil institucional</span>
+          </div>
+        </section>
+      </section>
+
+      <!-- =========================================
+           NOTA INSTITUCIONAL
+      ========================================== -->
+      <div class="bottom-note">
+        <span class="bottom-line" aria-hidden="true"></span>
+
+        <span>Corporación Tecnológica Industrial Colombiana</span>
+
+        <span class="bottom-line" aria-hidden="true"></span>
+      </div>
+    </main>
+
+    <!-- =========================================
+         PIE DE PÁGINA
+    ========================================== -->
+    <footer class="footer">
+      <span>© <span id="current-year"></span> TEINCO</span>
+
+      <span class="footer-separator" aria-hidden="true">·</span>
+
+      <span>AsistIA — Asistente virtual institucional</span>
+    </footer>
+
+    <!-- =========================================
+         JAVASCRIPT — FUNCIONALIDAD DE INICIO
+         Se mantiene aquí para no necesitar otro JS.
+    ========================================== -->
+    <script>
+      "use strict";
+
+      (() => {
+        // =====================================
+        // ELEMENTOS DEL DOM
+        // =====================================
+
+        const roleButtons = Array.from(
+          document.querySelectorAll(".role-option"),
+        );
+
+        const continueButton = document.getElementById("btn-continuar");
+        const selectionMessage = document.getElementById("selection-message");
+        const currentYear = document.getElementById("current-year");
+
+        // =====================================
+        // VALIDACIÓN DE ELEMENTOS
+        // =====================================
+
+        if (
+          roleButtons.length === 0 ||
+          !continueButton ||
+          !selectionMessage ||
+          !currentYear
+        ) {
+          console.error(
+            "AsistIA: No se encontraron todos los elementos necesarios.",
+          );
+
+          return;
+        }
+
+        const continueText = continueButton.querySelector("span");
+
+        if (!continueText) {
+          console.error(
+            "AsistIA: No se encontró el texto del botón continuar.",
+          );
+
+          return;
+        }
+
+        // =====================================
+        // CONFIGURACIÓN
+        // =====================================
+
+        const destinations = Object.freeze({
+          comunidad: "chat.html",
+          admin: "admin-login.html",
+        });
+
+        let selectedRole = null;
+        let isNavigating = false;
+
+        // =====================================
+        // AÑO AUTOMÁTICO
+        // =====================================
+
+        currentYear.textContent = new Date().getFullYear();
+
+        // =====================================
+        // SELECCIÓN DE PERFIL
+        // =====================================
+
+        function selectRole(role) {
+          if (
+            !Object.prototype.hasOwnProperty.call(destinations, role) ||
+            isNavigating
+          ) {
+            return;
+          }
+
+          selectedRole = role;
+
+          roleButtons.forEach((button) => {
+            const isSelected = button.dataset.role === role;
+
+            button.classList.toggle("selected", isSelected);
+            button.setAttribute("aria-pressed", String(isSelected));
+          });
+
+          continueButton.disabled = false;
+          continueText.textContent = "Continuar";
+
+          selectionMessage.textContent =
+            role === "comunidad"
+              ? "Perfil seleccionado: Comunidad educativa."
+              : "Perfil seleccionado: Administrador.";
+        }
+
+        // =====================================
+        // EVENTOS DE SELECCIÓN
+        // =====================================
+
+        roleButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            selectRole(button.dataset.role);
+          });
+        });
+
+        // =====================================
+        // ACCIÓN DEL BOTÓN CONTINUAR
+        // =====================================
+
+        continueButton.addEventListener("click", () => {
+          if (isNavigating) {
+            return;
+          }
+
+          if (
+            !selectedRole ||
+            !Object.prototype.hasOwnProperty.call(destinations, selectedRole)
+          ) {
+            selectionMessage.textContent =
+              "Selecciona un perfil antes de continuar.";
+
+            return;
+          }
+
+          const destination = destinations[selectedRole];
+
+          isNavigating = true;
+
+          continueButton.disabled = true;
+          continueText.textContent = "Ingresando...";
+
+          selectionMessage.textContent = "Preparando tu acceso a AsistIA...";
+
+          window.location.assign(destination);
+        });
+      })();
+    </script>
+  </body>
+</html>

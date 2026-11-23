@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- =====================================
+         CONFIGURACIÓN GENERAL
+    ====================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Panel administrativo de reportes y estadísticas de AsistIA."
+    />
+    <meta name="theme-color" content="#090a16" />
+
+    <title>AsistIA | Panel de reportes</title>
+
+    <!-- TIPOGRAFÍAS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin-reportes.css" />
+
+    <!-- BIBLIOTECA DE GRÁFICOS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"
+      defer
+    ></script>
+
+    <!-- AUTENTICACIÓN Y PROTECCIÓN ADMINISTRATIVA -->
+    <script src="js/auth.js" defer></script>
+
+    <!-- LÓGICA DEL PANEL DE REPORTES -->
+    <script src="js/admin-reportes.js" defer></script>
+  </head>
+
+  <body>
+    <div class="contenedor-admin">
+      <!-- =====================================
+           BARRA LATERAL
+      ====================================== -->
+      <aside
+        class="barra-lateral"
+        id="barra-lateral"
+        aria-label="Panel de navegación"
+      >
+        <!-- LOGO INSTITUCIONAL -->
+        <a
+          href="admin-reportes.html"
+          class="logo-lateral"
+          aria-label="AsistIA, panel administrativo"
+        >
+          <div class="logo-icono">
+            <img src="assets/img/logo-asistia.png" alt="Logo de AsistIA" />
+          </div>
+
+          <div class="logo-texto">
+            <strong>Asist<span>IA</span></strong>
+            <small>PANEL ADMINISTRATIVO</small>
+          </div>
+        </a>
+
+        <!-- NAVEGACIÓN ADMINISTRATIVA -->
+        <nav class="menu-lateral" aria-label="Menú administrativo">
+          <span class="titulo-menu">GENERAL</span>
+
+          <!-- REPORTES -->
+          <a
+            href="admin-reportes.html"
+            class="item-menu activo"
+            aria-current="page"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect
+                x="3"
+                y="3"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="13"
+                y="3"
+                width="8"
+                height="5"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="13"
+                y="10"
+                width="8"
+                height="11"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="3"
+                y="13"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+            <span>Reportes y estadísticas</span>
+          </a>
+
+          <!-- DIVISIONES -->
+          <a href="admin-divisiones.html" class="item-menu">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect
+                x="3"
+                y="3"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="13"
+                y="3"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="3"
+                y="13"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <rect
+                x="13"
+                y="13"
+                width="8"
+                height="8"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+            <span>Divisiones</span>
+          </a>
+
+          <!-- CUENTA -->
+          <span class="titulo-menu titulo-menu-inferior">CUENTA</span>
+
+          <button
+            type="button"
+            class="item-menu item-cerrar-sesion"
+            id="btn-cerrar-sesion"
+            data-action="logout"
+            aria-label="Cerrar sesión administrativa"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M10 17l5-5-5-5M15 12H3"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span>Cerrar sesión</span>
+          </button>
+        </nav>
+
+        <!-- INFORMACIÓN DEL SISTEMA -->
+        <div class="sidebar-footer">
+          <small>Corporación Tecnológica Industrial Colombiana</small>
+        </div>
+      </aside>
+
+      <!-- =====================================
+           CONTENIDO ADMINISTRATIVO
+      ====================================== -->
+      <main class="contenido-admin">
+        <!-- CABECERA -->
+        <header class="cabecera-admin">
+          <div class="cabecera-titulo">
+            <div class="breadcrumb" aria-label="Ubicación actual">
+              <span>Administración</span>
+              <span aria-hidden="true">/</span>
+              <strong>Reportes</strong>
+            </div>
+            <h1>Panel de reportes</h1>
+            <p>
+              Consulta la actividad y el comportamiento del asistente
+              institucional.
+            </p>
+          </div>
+
+          <div class="acciones-cabecera">
+            <!-- FECHA ACTUAL -->
+            <div class="fecha-actual">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="16"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M7 3v4M17 3v4M3 10h18"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span id="fecha-actual" aria-live="polite"
+                >Cargando fecha...</span
+              >
+            </div>
+
+            <!-- EXPORTAR REPORTE -->
+            <button
+              type="button"
+              class="btn-primario"
+              id="btn-descargar"
+              aria-label="Exportar reporte de conversaciones en formato CSV"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 3v12m-5-5 5 5 5-5"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5 17v3h14v-3"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>Exportar reporte</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- INDICADORES PRINCIPALES -->
+        <section class="seccion-resumen" aria-labelledby="titulo-resumen">
+          <div class="encabezado-seccion">
+            <div>
+              <span class="texto-superior">RESUMEN GENERAL</span>
+              <h2 id="titulo-resumen">Indicadores de actividad</h2>
+            </div>
+          </div>
+
+          <div class="cuadricula-resumen">
+            <article class="tarjeta-resumen">
+              <div class="resumen-superior">
+                <span class="resumen-etiqueta">Total de consultas</span>
+                <div class="resumen-icono icono-consultas">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-7.5a7.5 7.5 0 1 1 17-2Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 10h8M8 14h5"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <strong
+                class="numero-grande"
+                id="total-consultas"
+                aria-live="polite"
+                >—</strong
+              >
+              <span class="resumen-descripcion">Interacciones registradas</span>
+            </article>
+
+            <article class="tarjeta-resumen">
+              <div class="resumen-superior">
+                <span class="resumen-etiqueta">Respuestas generadas</span>
+                <div class="resumen-icono icono-respuestas">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="m5 12 4 4L19 6"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <strong
+                class="numero-grande"
+                id="total-respuestas"
+                aria-live="polite"
+                >—</strong
+              >
+              <span class="resumen-descripcion">Respuestas registradas</span>
+            </article>
+
+            <article class="tarjeta-resumen">
+              <div class="resumen-superior">
+                <span class="resumen-etiqueta">División más consultada</span>
+                <div class="resumen-icono icono-division">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M4 20V7l8-4 8 4v13M8 20v-6h8v6"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <strong
+                class="numero-grande numero-texto"
+                id="division-popular"
+                aria-live="polite"
+                >—</strong
+              >
+              <span class="resumen-descripcion"
+                >Según consultas registradas</span
+              >
+            </article>
+
+            <article class="tarjeta-resumen">
+              <div class="resumen-superior">
+                <span class="resumen-etiqueta">Consultas sin respuesta</span>
+                <div class="resumen-icono icono-pendientes">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="M12 7v5l3 2"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <strong
+                class="numero-grande"
+                id="consultas-sin-respuesta"
+                aria-live="polite"
+                >—</strong
+              >
+              <span class="resumen-descripcion">Requieren revisión</span>
+            </article>
+          </div>
+        </section>
+
+        <!-- GRÁFICOS ESTADÍSTICOS -->
+        <section
+          class="seccion-graficos"
+          aria-label="Estadísticas de consultas"
+        >
+          <article class="tarjeta-grafico">
+            <div class="grafico-encabezado">
+              <div>
+                <span class="texto-superior">ACTIVIDAD</span>
+                <h2>Consultas a lo largo del tiempo</h2>
+                <p>Comportamiento de las interacciones registradas.</p>
+              </div>
+              <span class="grafico-icono" aria-hidden="true">01</span>
+            </div>
+            <div class="contenedor-canvas">
+              <canvas
+                id="grafico-lineas"
+                role="img"
+                aria-label="Gráfico de consultas a lo largo del tiempo"
+                >Gráfico de consultas a lo largo del tiempo.</canvas
+              >
+            </div>
+            <p
+              class="estado-grafico"
+              id="estado-grafico-lineas"
+              role="status"
+              aria-live="polite"
+            >
+              Esperando datos del servidor...
+            </p>
+          </article>
+
+          <article class="tarjeta-grafico">
+            <div class="grafico-encabezado">
+              <div>
+                <span class="texto-superior">DISTRIBUCIÓN</span>
+                <h2>Consultas por división</h2>
+                <p>Participación de cada área institucional.</p>
+              </div>
+              <span class="grafico-icono" aria-hidden="true">02</span>
+            </div>
+            <div class="contenedor-canvas">
+              <canvas
+                id="grafico-barras"
+                role="img"
+                aria-label="Gráfico de consultas por división"
+                >Gráfico de consultas por división.</canvas
+              >
+            </div>
+            <p
+              class="estado-grafico"
+              id="estado-grafico-barras"
+              role="status"
+              aria-live="polite"
+            >
+              Esperando datos del servidor...
+            </p>
+          </article>
+        </section>
+
+        <!-- HISTORIAL DE CONVERSACIONES -->
+        <section class="tarjeta-tabla" aria-labelledby="titulo-conversaciones">
+          <div class="tabla-encabezado">
+            <div>
+              <span class="texto-superior">REGISTRO DE ACTIVIDAD</span>
+              <h2 id="titulo-conversaciones">Detalle de conversaciones</h2>
+              <p>Consulta las interacciones registradas por AsistIA.</p>
+            </div>
+
+            <div class="tabla-controles">
+              <label for="filtro-division" class="sr-only"
+                >Filtrar conversaciones por división</label
+              >
+              <select id="filtro-division" class="filtro-division">
+                <option value="">Todas las divisiones</option>
+                <option value="Admisiones">Admisiones</option>
+                <option value="Registro y Control">Registro y Control</option>
+                <option value="Bienestar Institucional">
+                  Bienestar Institucional
+                </option>
+                <option value="Coordinación Académica">
+                  Coordinación Académica
+                </option>
+              </select>
+
+              <button type="button" class="btn-secundario" id="btn-actualizar">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M20 7v5h-5M4 17v-5h5"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M5.5 9a7 7 0 0 1 12-2L20 12M4 12l2.5 5a7 7 0 0 0 12-2"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span>Actualizar</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tabla-contenedor">
+            <table class="tabla-conversaciones">
+              <caption class="sr-only">
+                Historial de consultas y respuestas registradas por AsistIA.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Fecha y hora</th>
+                  <th scope="col">Consulta</th>
+                  <th scope="col">División</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Respuesta</th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo-tabla">
+                <tr class="fila-vacia">
+                  <td colspan="5">
+                    <div class="estado-vacio">
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect
+                          x="3"
+                          y="4"
+                          width="18"
+                          height="17"
+                          rx="2"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                        />
+                        <path
+                          d="M8 2v4M16 2v4M3 10h18M8 14h8M8 17h5"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <strong>No hay conversaciones cargadas</strong>
+                      <span
+                        >Los registros aparecerán aquí cuando se conecte el
+                        sistema de reportes.</span
+                      >
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tabla-pie">
+            <span id="total-registros" aria-live="polite">0 registros</span>
+            <span>Información de actividad institucional</span>
+          </div>
+        </section>
+
+        <!-- NOTA INFORMATIVA -->
+        <div class="nota-administrativa">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M12 11v5m0-8h.01"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+          <p>
+            Los indicadores y registros de este panel deben proceder de
+            interacciones almacenadas y verificables. Los datos personales y la
+            información privada de los usuarios deben tratarse conforme a los
+            permisos institucionales.
+          </p>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

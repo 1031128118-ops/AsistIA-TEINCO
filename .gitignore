@@ -1,0 +1,33 @@
+
+# Dependencias
+node_modules/
+
+# Variables privadas
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Archivos temporales
+.DS_Store
+Thumbs.db
+# Documentos y archivos cargados por usuarios
+uploads/
+
+# Archivos de respaldo
+*.bak
+*.old
+
+# Archivos de entorno adicionales
+.env.local
+.env.production
+# Respaldos de PostgreSQL
+respaldo_postgresql_18_data/
+*.sql
+*.dump
+
+# Proteger archivo de credenciales
+.env

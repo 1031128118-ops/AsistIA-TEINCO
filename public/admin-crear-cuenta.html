@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Solicitud de acceso administrativo a la plataforma AsistIA de TEINCO."
+    />
+    <meta name="theme-color" content="#090A12" />
+
+    <title>AsistIA | Solicitud de acceso administrativo</title>
+
+    <!-- Fuentes institucionales -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Hojas de estilos -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin-crear-cuenta.css" />
+
+    <!-- Autenticación -->
+    <script src="js/auth.js" defer></script>
+  </head>
+
+  <body class="fondo-morado">
+    <!-- =====================================
+         BARRA SUPERIOR
+    ====================================== -->
+
+    <header class="barra-superior">
+      <div class="contenedor-barra">
+        <a href="index.html" class="enlace-logo">
+          <div class="logo-icono">
+            <img src="assets/img/logo-asistia.png" alt="Logo de AsistIA" />
+          </div>
+
+          <div class="marca-texto">
+            <span class="nombre-app">Asist<span>IA</span></span>
+            <span class="marca-descripcion"> ASISTENTE INSTITUCIONAL </span>
+          </div>
+        </a>
+
+        <a href="admin-login.html" class="enlace-volver">
+          Ya tengo una cuenta
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- =====================================
+         CONTENIDO PRINCIPAL
+    ====================================== -->
+
+    <main class="contenedor-centro">
+      <section
+        class="tarjeta-formulario tarjeta-registro-admin"
+        aria-labelledby="titulo-registro"
+      >
+        <!-- INTRODUCCIÓN -->
+
+        <div class="encabezado-formulario">
+          <span class="etiqueta-seccion">ACCESO RESTRINGIDO</span>
+
+          <div class="icono-formulario" aria-hidden="true">✦</div>
+
+          <h1 id="titulo-registro">Solicitud de acceso administrativo</h1>
+
+          <p class="subtitulo-form">
+            Registra tus datos institucionales para solicitar acceso al panel de
+            administración de AsistIA.
+          </p>
+        </div>
+
+        <!-- =====================================
+             AVISO DE SEGURIDAD
+        ====================================== -->
+
+        <div class="aviso-seguridad" role="note">
+          <span class="icono-aviso" aria-hidden="true">ⓘ</span>
+
+          <p>
+            Esta plataforma está destinada exclusivamente al personal autorizado
+            de TEINCO. El envío del formulario no garantiza la creación de una
+            cuenta.
+          </p>
+        </div>
+
+        <!-- =====================================
+             FORMULARIO DE REGISTRO
+        ====================================== -->
+
+        <form id="form-crear-cuenta" autocomplete="on">
+          <!-- NOMBRE COMPLETO -->
+
+          <div class="grupo-form">
+            <label for="nombre-completo">Nombre completo</label>
+
+            <input
+              type="text"
+              id="nombre-completo"
+              name="nombreCompleto"
+              placeholder="Ingresa tus nombres y apellidos"
+              autocomplete="name"
+              minlength="3"
+              maxlength="120"
+              required
+              aria-describedby="ayuda-nombre"
+            />
+
+            <small id="ayuda-nombre">
+              Escribe tu nombre y apellidos tal como aparecen en tus datos
+              institucionales.
+            </small>
+          </div>
+
+          <!-- CORREO INSTITUCIONAL -->
+
+          <div class="grupo-form">
+            <label for="correo-admin">Correo institucional</label>
+
+            <input
+              type="email"
+              id="correo-admin"
+              name="correo"
+              placeholder="usuario@institucion.edu.co"
+              autocomplete="email"
+              maxlength="150"
+              required
+              aria-describedby="ayuda-correo"
+            />
+
+            <small id="ayuda-correo">
+              Utiliza el correo institucional que te identifica como personal
+              autorizado.
+            </small>
+          </div>
+
+          <!-- NOMBRE DE USUARIO -->
+
+          <div class="grupo-form">
+            <label for="usuario-nuevo">Nombre de usuario</label>
+
+            <input
+              type="text"
+              id="usuario-nuevo"
+              name="usuario"
+              placeholder="Crea tu nombre de usuario"
+              autocomplete="username"
+              minlength="4"
+              maxlength="128"
+              pattern="[A-Za-z0-9._-]+"
+              title="Utiliza letras, números, puntos, guiones o guiones bajos."
+              required
+              aria-describedby="ayuda-usuario"
+            />
+
+            <small id="ayuda-usuario">
+              Utiliza al menos 4 caracteres. Puedes usar letras, números,
+              puntos, guiones y guiones bajos.
+            </small>
+          </div>
+
+          <!-- CONTRASEÑA -->
+
+          <div class="grupo-form">
+            <label for="clave-nueva">Contraseña</label>
+
+            <div class="campo-contrasena">
+              <input
+                type="password"
+                id="clave-nueva"
+                name="clave"
+                placeholder="Crea una contraseña segura"
+                autocomplete="new-password"
+                minlength="12"
+                maxlength="128"
+                required
+                aria-describedby="ayuda-clave"
+              />
+
+              <button
+                type="button"
+                class="btn-mostrar-clave"
+                id="btn-mostrar-clave"
+                aria-label="Mostrar contraseña"
+                aria-pressed="false"
+              >
+                Mostrar
+              </button>
+            </div>
+
+            <small id="ayuda-clave">
+              Utiliza entre 12 y 128 caracteres. Se recomienda combinar letras,
+              números y símbolos.
+            </small>
+          </div>
+
+          <!-- CONFIRMAR CONTRASEÑA -->
+
+          <div class="grupo-form">
+            <label for="confirmar-clave">Confirmar contraseña</label>
+
+            <div class="campo-contrasena">
+              <input
+                type="password"
+                id="confirmar-clave"
+                name="confirmarClave"
+                placeholder="Escribe nuevamente tu contraseña"
+                autocomplete="new-password"
+                minlength="12"
+                maxlength="128"
+                required
+                aria-describedby="ayuda-confirmacion"
+              />
+
+              <button
+                type="button"
+                class="btn-mostrar-clave"
+                id="btn-mostrar-confirmacion"
+                aria-label="Mostrar confirmación de contraseña"
+                aria-pressed="false"
+              >
+                Mostrar
+              </button>
+            </div>
+
+            <small id="ayuda-confirmacion">
+              Ambas contraseñas deben coincidir.
+            </small>
+          </div>
+
+          <!-- CÓDIGO DE AUTORIZACIÓN -->
+
+          <div class="grupo-form">
+            <label for="codigo-autorizacion">
+              Código de autorización institucional
+            </label>
+
+            <input
+              type="password"
+              id="codigo-autorizacion"
+              name="codigoAutorizacion"
+              placeholder="Ingresa el código proporcionado por TEINCO"
+              autocomplete="off"
+              maxlength="100"
+              required
+              aria-describedby="ayuda-codigo"
+            />
+
+            <small id="ayuda-codigo">
+              Este código debe ser proporcionado por la autoridad institucional
+              correspondiente.
+            </small>
+          </div>
+
+          <!-- =====================================
+               ACEPTACIÓN DE CONDICIONES
+          ====================================== -->
+
+          <div class="grupo-aceptacion">
+            <input
+              type="checkbox"
+              id="aceptar-condiciones"
+              name="aceptarCondiciones"
+              required
+            />
+
+            <label for="aceptar-condiciones">
+              Confirmo que soy personal autorizado y que los datos suministrados
+              son correctos.
+            </label>
+          </div>
+
+          <!-- =====================================
+               MENSAJES DEL FORMULARIO
+          ====================================== -->
+
+          <div
+            class="mensaje-formulario"
+            id="mensaje-formulario"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            hidden
+          ></div>
+
+          <!-- =====================================
+               BOTÓN DE ENVÍO
+          ====================================== -->
+
+          <button type="submit" class="btn-principal" id="btn-crear-cuenta">
+            <span>Enviar solicitud de acceso</span>
+
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <!-- =====================================
+             ACCESO AL LOGIN
+        ====================================== -->
+
+        <div class="separador-formulario">
+          <span>¿Ya tienes acceso?</span>
+        </div>
+
+        <a href="admin-login.html" class="btn-secundario"> Iniciar sesión </a>
+
+        <!-- =====================================
+             INFORMACIÓN DE SEGURIDAD
+        ====================================== -->
+
+        <div class="nota-seguridad">
+          <span aria-hidden="true">🔒</span>
+
+          <p>
+            La creación de cuentas administrativas requiere validación del
+            servidor y autorización institucional. Nunca compartas tus
+            credenciales.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

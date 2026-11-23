@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- =========================================
+         CONFIGURACIÓN GENERAL
+    ========================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="AsistIA, asistente virtual de información institucional de TEINCO."
+    />
+
+    <meta name="theme-color" content="#090a16" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="author" content="TEINCO" />
+
+    <title>AsistIA | Asistente institucional TEINCO</title>
+
+    <!-- =========================================
+         FUENTES TIPOGRÁFICAS
+    ========================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =========================================
+         HOJAS DE ESTILOS
+    ========================================== -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/chat.css" />
+  </head>
+
+  <body>
+    <!-- =========================================
+         FONDO DECORATIVO INSTITUCIONAL
+    ========================================== -->
+    <div class="background-effects" aria-hidden="true">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <!-- =========================================
+         ENCABEZADO Y NAVEGACIÓN
+    ========================================== -->
+    <header class="topbar">
+      <!-- IDENTIDAD DE ASISTIA -->
+      <a href="index.html" class="brand" aria-label="AsistIA, volver al inicio">
+        <div class="brand-mark">
+          <img src="assets/img/logo-asistia.png" alt="Logo de AsistIA" />
+        </div>
+
+        <div class="brand-copy">
+          <span class="brand-name">Asist<span>IA</span></span>
+          <span class="brand-caption">ASISTENTE INSTITUCIONAL</span>
+        </div>
+      </a>
+
+      <!-- NAVEGACIÓN PRINCIPAL -->
+      <nav class="nav-enlaces" aria-label="Navegación principal">
+        <a href="index.html" class="enlace-nav">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <span>Inicio</span>
+        </a>
+
+        <a href="divisiones.html" class="enlace-nav">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect
+              x="3"
+              y="3"
+              width="8"
+              height="8"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+
+            <rect
+              x="13"
+              y="3"
+              width="8"
+              height="8"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+
+            <rect
+              x="3"
+              y="13"
+              width="8"
+              height="8"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+
+            <rect
+              x="13"
+              y="13"
+              width="8"
+              height="8"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+          </svg>
+
+          <span>Divisiones</span>
+        </a>
+
+        <a href="chat.html" class="enlace-nav activo" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-7.5a7.5 7.5 0 1 1 17-2Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            <path
+              d="M8 10h8M8 14h5"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+
+          <span>Chat</span>
+        </a>
+      </nav>
+
+      <!-- ESTADO DE LA PLATAFORMA -->
+      <div class="topbar-right" role="status">
+        <span class="status-indicator" aria-hidden="true"></span>
+        <span class="status-text">Plataforma institucional</span>
+      </div>
+    </header>
+
+    <!-- =========================================
+         CONTENIDO PRINCIPAL
+    ========================================== -->
+    <main class="main-container chat-main">
+      <section class="chat-panel" aria-label="Conversación con AsistIA">
+        <!-- =====================================
+             ENCABEZADO DEL ASISTENTE
+        ====================================== -->
+        <header class="chat-header">
+          <div class="chat-header-info">
+            <div class="avatar-asistente" aria-hidden="true">
+              <span>A</span>
+              <span class="avatar-status"></span>
+            </div>
+
+            <div class="chat-identidad">
+              <h1>AsistIA</h1>
+
+              <div class="estado-asistente">
+                <span class="estado-punto" aria-hidden="true"></span>
+                <span>Asistente institucional TEINCO</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-header-right">
+            <span class="etiqueta-ia">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                  stroke-linejoin="round"
+                />
+              </svg>
+
+              Inteligencia artificial
+            </span>
+          </div>
+        </header>
+
+        <!-- =====================================
+             CONTEXTO DE LA DIVISIÓN
+        ====================================== -->
+        <div class="chat-contexto" id="division-context" hidden>
+          <div class="contexto-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 20V7l8-4 8 4v13M8 20v-6h8v6M9 9h.01M15 9h.01"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div class="contexto-informacion">
+            <span>CONSULTA SELECCIONADA</span>
+            <strong id="division-seleccionada"></strong>
+          </div>
+
+          <a href="divisiones.html" class="cambiar-division"> Cambiar </a>
+        </div>
+
+        <!-- =====================================
+             HISTORIAL DE CONVERSACIÓN
+        ====================================== -->
+        <div
+          class="caja-mensajes"
+          id="caja-mensajes"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+          aria-label="Historial de conversación"
+        >
+          <!-- MENSAJE DE BIENVENIDA -->
+          <div class="mensaje asistente mensaje-bienvenida">
+            <div class="avatar avatar-asistente-mensaje" aria-hidden="true">
+              A
+            </div>
+
+            <div class="contenido-mensaje">
+              <div class="mensaje-meta">
+                <strong>AsistIA</strong>
+                <span>Asistente institucional</span>
+              </div>
+
+              <div class="burbuja-mensaje">
+                <p>
+                  ¡Hola! Bienvenido a <strong>AsistIA</strong>. Estoy aquí para
+                  orientarte con información institucional de TEINCO.
+                </p>
+
+                <p>Puedo ayudarte con consultas relacionadas con:</p>
+
+                <ul
+                  class="lista-areas-chat"
+                  id="lista-areas-chat"
+                  aria-live="polite"
+                >
+                  <li>Cargando divisiones institucionales...</li>
+                </ul>
+
+                <p>¿Sobre cuál de estas áreas necesitas información?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =====================================
+             INDICADOR DE ESCRITURA
+        ====================================== -->
+        <div
+          class="escribiendo oculto"
+          id="indicador-escribiendo"
+          role="status"
+          aria-live="polite"
+          aria-label="AsistIA está preparando una respuesta"
+        >
+          <div class="mensaje asistente">
+            <div class="avatar avatar-asistente-mensaje" aria-hidden="true">
+              A
+            </div>
+
+            <div class="contenido-mensaje">
+              <div class="burbuja-escribiendo">
+                <span class="texto-escribiendo">
+                  AsistIA está respondiendo
+                </span>
+
+                <div class="puntos" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =====================================
+             CONSULTAS FRECUENTES
+        ====================================== -->
+        <section class="sugerencias" aria-label="Consultas frecuentes">
+          <span class="sugerencias-titulo"> CONSULTAS FRECUENTES </span>
+
+          <div class="lista-sugerencias">
+            <button
+              type="button"
+              class="btn-sugerencia"
+              data-suggestion="¿Cuáles son los requisitos de inscripción en TEINCO?"
+            >
+              ¿Cómo me inscribo?
+            </button>
+
+            <button
+              type="button"
+              class="btn-sugerencia"
+              data-suggestion="¿Cómo puedo solicitar un certificado académico?"
+            >
+              Solicitar un certificado
+            </button>
+
+            <button
+              type="button"
+              class="btn-sugerencia"
+              data-suggestion="¿Qué servicios ofrece Bienestar Institucional?"
+            >
+              Servicios de Bienestar
+            </button>
+          </div>
+        </section>
+
+        <!-- =====================================
+             ZONA DE ESCRITURA
+        ====================================== -->
+        <div class="zona-escritura">
+          <form class="form-chat" id="form-chat">
+            <label for="entrada-mensaje" class="sr-only">
+              Escribe tu consulta institucional
+            </label>
+
+            <input
+              type="text"
+              id="entrada-mensaje"
+              name="mensaje"
+              placeholder="Escribe tu consulta institucional..."
+              autocomplete="off"
+              maxlength="2000"
+              minlength="2"
+              aria-describedby="aviso-chat"
+              required
+            />
+
+            <button
+              type="submit"
+              class="btn-enviar"
+              id="btn-enviar"
+              aria-label="Enviar mensaje"
+              title="Enviar mensaje"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M21 3 10.5 13.5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+
+                <path
+                  d="m21 3-6.7 18-3.8-7.5L3 9.7 21 3Z"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </form>
+
+          <p class="aviso-chat" id="aviso-chat">
+            AsistIA proporciona orientación institucional. No realiza trámites
+            ni modifica registros académicos. Verifica la información importante
+            mediante los canales oficiales de TEINCO.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================
+         PIE DE PÁGINA
+    ========================================== -->
+    <footer class="footer">
+      <span> © <span id="current-year"></span> TEINCO </span>
+
+      <span class="footer-separator" aria-hidden="true">·</span>
+
+      <span>AsistIA — Asistente virtual institucional</span>
+    </footer>
+
+    <!-- =========================================
+         JAVASCRIPT COMPLEMENTARIO
+         Año y contexto de división.
+         Las sugerencias y el chat los gestiona
+         js/chat.js para evitar eventos duplicados.
+    ========================================== -->
+
+    <script>
+      "use strict";
+
+      (() => {
+        const divisionContext = document.getElementById("division-context");
+        const divisionLabel = document.getElementById("division-seleccionada");
+        const currentYear = document.getElementById("current-year");
+        const listaAreas = document.getElementById("lista-areas-chat");
+
+        // Año automático.
+        if (currentYear) {
+          currentYear.textContent = new Date().getFullYear();
+        }
+
+        // Normalizar nombres para comparar sin problemas de tildes.
+        const normalizar = (valor) =>
+          String(valor || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, " ")
+            .trim();
+
+        // Consultar las divisiones activas de TEINCO.
+        async function cargarDivisiones() {
+          if (!listaAreas) return;
+
+          try {
+            const respuesta = await fetch("/api/divisiones", {
+              headers: {
+                Accept: "application/json",
+              },
+            });
+
+            if (!respuesta.ok) {
+              throw new Error("No fue posible consultar las divisiones.");
+            }
+
+            const resultado = await respuesta.json();
+
+            if (
+              !resultado.success ||
+              !Array.isArray(resultado.data?.divisiones)
+            ) {
+              throw new Error("La respuesta de divisiones no es válida.");
+            }
+
+            const divisiones = resultado.data.divisiones;
+
+            // Construir la lista de áreas dinámicamente.
+            listaAreas.replaceChildren();
+
+            if (divisiones.length === 0) {
+              const elemento = document.createElement("li");
+              elemento.textContent =
+                "No hay divisiones institucionales activas.";
+              listaAreas.appendChild(elemento);
+            } else {
+              divisiones.forEach((division) => {
+                const elemento = document.createElement("li");
+                elemento.textContent = division.nombre;
+                listaAreas.appendChild(elemento);
+              });
+            }
+
+            // Validar la división recibida por URL.
+            const parametros = new URLSearchParams(window.location.search);
+            const divisionSolicitada = parametros.get("division");
+
+            if (divisionSolicitada && divisionContext && divisionLabel) {
+              const divisionEncontrada = divisiones.find((item) => {
+                return (
+                  normalizar(item.nombre) === normalizar(divisionSolicitada) ||
+                  normalizar(item.id) === normalizar(divisionSolicitada)
+                );
+              });
+
+              if (divisionEncontrada) {
+                divisionLabel.textContent = divisionEncontrada.nombre;
+                divisionContext.hidden = false;
+              }
+            }
+          } catch (error) {
+            console.error("Error al cargar las divisiones:", error);
+
+            listaAreas.replaceChildren();
+
+            const elemento = document.createElement("li");
+            elemento.textContent =
+              "No fue posible cargar las divisiones institucionales.";
+
+            listaAreas.appendChild(elemento);
+          }
+        }
+
+        cargarDivisiones();
+      })();
+    </script>
+
+    <!-- =========================================
+         JAVASCRIPT PRINCIPAL DEL CHAT
+    ========================================== -->
+    <script src="js/chat.js" defer></script>
+  </body>
+</html>
