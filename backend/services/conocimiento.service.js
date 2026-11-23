@@ -2,19 +2,8 @@
    ASISTIA — TEINCO
    SERVICIO DE CONOCIMIENTO INSTITUCIONAL
 
-   Archivo: backend/services/conocimiento.service.js
-
-   Funciones:
-   - Consultar documentos institucionales activos.
-   - Filtrar documentos por división.
-   - Recuperar información relacionada con la consulta.
-   - Reconocer variaciones frecuentes de palabras.
-   - Priorizar documentos por relevancia.
-   - Extraer texto de archivos autorizados.
-   - Construir contexto para Groq.
-   - Evitar el acceso a archivos fuera de la carpeta autorizada.
-   - Reutilizar temporalmente el texto de documentos sin
-     volver a extraerlo en cada mensaje.
+   Lectura de documentos desde Supabase Storage.
+   Respaldo de lectura desde almacenamiento local.
 ========================================================= */
 
 "use strict";
@@ -23,8 +12,12 @@ const fs = require("fs");
 const path = require("path");
 
 const pool = require("../config/database");
+const supabase = require("../config/supabase");
 
-const { extraerTextoDocumento } = require("./documentos.service");
+const {
+  extraerTextoDocumento,
+  extraerTextoDesdeBuffer,
+} = require("./documentos.service");
 
 // =========================================================
 // CONFIGURACIÓN
@@ -32,6 +25,8 @@ const { extraerTextoDocumento } = require("./documentos.service");
 
 const CONFIG = Object.freeze({
   CARPETA_DOCUMENTOS: path.resolve(__dirname, "../../uploads/documentos"),
+
+  BUCKET_DOCUMENTOS: process.env.SUPABASE_BUCKET_DOCUMENTOS || "documentos",
 
   MAX_CONTEXTO_TOTAL: 12000,
 
@@ -155,10 +150,7 @@ const CONFIG = Object.freeze({
   ],
 });
 
-// Caché temporal en memoria.
-// No guarda conversaciones ni información del usuario.
-// Se invalida cuando cambia el archivo.
-
+// Caché temporal de documentos.
 const cacheDocumentos = new Map();
 
 // =========================================================
@@ -226,10 +218,7 @@ function coincideTermino(consulta, documento) {
   }
 
   if (consulta.length >= 5 && documento.length >= 5) {
-    const prefijoConsulta = consulta.slice(0, 5);
-    const prefijoDocumento = documento.slice(0, 5);
-
-    return prefijoConsulta === prefijoDocumento;
+    return consulta.slice(0, 5) === documento.slice(0, 5);
   }
 
   return false;
@@ -249,36 +238,28 @@ function calcularRelevancia(documento, palabrasConsulta) {
   );
 
   const palabrasNombre = obtenerPalabrasClave(nombreDocumento);
-
-  const contenidoDocumento = normalizarTexto(documento.contenido);
-
-  const palabrasDocumento = obtenerPalabrasClave(contenidoDocumento);
+  const palabrasDocumento = obtenerPalabrasClave(documento.contenido);
 
   let puntuacion = 0;
 
   for (const palabra of palabrasConsulta) {
-    const coincideContenido = palabrasDocumento.some((palabraDocumento) => {
-      return coincideTermino(palabra, palabraDocumento);
-    });
+    const coincideContenido = palabrasDocumento.some((termino) =>
+      coincideTermino(palabra, termino),
+    );
 
-    const coincideNombre = palabrasNombre.some((palabraDocumento) => {
-      return coincideTermino(palabra, palabraDocumento);
-    });
+    const coincideNombre = palabrasNombre.some((termino) =>
+      coincideTermino(palabra, termino),
+    );
 
-    if (coincideContenido) {
-      puntuacion += 2;
-    }
-
-    if (coincideNombre) {
-      puntuacion += 5;
-    }
+    if (coincideContenido) puntuacion += 2;
+    if (coincideNombre) puntuacion += 5;
   }
 
   return puntuacion;
 }
 
 // =========================================================
-// VALIDAR Y RESOLVER RUTA DEL DOCUMENTO
+// VALIDAR Y RESOLVER RUTA LOCAL
 // =========================================================
 
 async function resolverRutaDocumento(rutaGuardada) {
@@ -287,14 +268,11 @@ async function resolverRutaDocumento(rutaGuardada) {
   }
 
   const rutaAbsoluta = path.resolve(__dirname, "../../", rutaGuardada);
-
   const carpetaReal = await fs.promises.realpath(CONFIG.CARPETA_DOCUMENTOS);
-
   const archivoReal = await fs.promises.realpath(rutaAbsoluta);
 
   const rutaRelativa = path.relative(carpetaReal, archivoReal);
 
-  // Impide salir de la carpeta autorizada.
   if (
     !rutaRelativa ||
     rutaRelativa.startsWith("..") ||
@@ -306,9 +284,7 @@ async function resolverRutaDocumento(rutaGuardada) {
   const extension = path.extname(archivoReal).toLowerCase();
 
   if (!CONFIG.FORMATOS_PERMITIDOS.includes(extension)) {
-    throw new Error(
-      "El formato del documento no está habilitado para lectura.",
-    );
+    throw new Error("El formato del documento no está habilitado.");
   }
 
   const informacionArchivo = await fs.promises.stat(archivoReal);
@@ -323,6 +299,63 @@ async function resolverRutaDocumento(rutaGuardada) {
     fechaModificacion: informacionArchivo.mtimeMs,
     tamano: informacionArchivo.size,
   };
+}
+
+// =========================================================
+// OBTENER EXTENSIÓN DEL DOCUMENTO
+// =========================================================
+
+function obtenerExtension(documento) {
+  const nombreArchivo =
+    documento.storage_path ||
+    documento.nombre_archivo ||
+    documento.nombre ||
+    "";
+
+  let extension = path.extname(nombreArchivo).toLowerCase();
+
+  if (!extension && documento.formato) {
+    extension = `.${String(documento.formato)
+      .replace(/^\./, "")
+      .toLowerCase()}`;
+  }
+
+  if (!CONFIG.FORMATOS_PERMITIDOS.includes(extension)) {
+    throw new Error("El formato del documento no está permitido.");
+  }
+
+  return extension;
+}
+
+// =========================================================
+// LEER DOCUMENTO DESDE SUPABASE STORAGE
+// =========================================================
+
+async function leerDesdeSupabase(documento) {
+  if (
+    typeof documento.storage_path !== "string" ||
+    !documento.storage_path.trim()
+  ) {
+    throw new Error("El documento no tiene una ruta de almacenamiento.");
+  }
+
+  const { data, error } = await supabase.storage
+    .from(CONFIG.BUCKET_DOCUMENTOS)
+    .download(documento.storage_path);
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    throw new Error("Supabase no devolvió el archivo.");
+  }
+
+  const buffer = Buffer.from(await data.arrayBuffer());
+
+  const extension = obtenerExtension(documento);
+
+  return extraerTextoDesdeBuffer(buffer, extension);
 }
 
 // =========================================================
@@ -343,7 +376,9 @@ async function consultarDocumentos(division) {
         doc.nombre,
         doc.nombre_archivo,
         doc.ruta_archivo,
+        doc.storage_path,
         doc.formato,
+        doc.tamano,
         doc.fecha_registro,
         doc.division_id,
         doc.estado_clasificacion,
@@ -351,6 +386,7 @@ async function consultarDocumentos(division) {
           div.nombre,
           'Institucional (transversal)'
         ) AS division_nombre
+
       FROM documentos doc
 
       LEFT JOIN divisiones div
@@ -365,13 +401,9 @@ async function consultarDocumentos(division) {
         ) IN ('pdf', 'docx', 'txt')
 
         AND (
-          -- Documentos transversales disponibles para todas las divisiones.
           doc.estado_clasificacion = 'transversal'
 
-          OR
-
-          -- Documentos clasificados disponibles según su división.
-          (
+          OR (
             doc.estado_clasificacion = 'clasificado'
             AND div.id IS NOT NULL
             AND (
@@ -389,7 +421,6 @@ async function consultarDocumentos(division) {
     return resultado.rows;
   } catch (error) {
     console.error("Error al consultar documentos institucionales:", error);
-
     throw error;
   }
 }
@@ -403,32 +434,79 @@ async function cargarContenidoDocumentos(documentos) {
 
   for (const documento of documentos) {
     try {
-      const informacion = await resolverRutaDocumento(documento.ruta_archivo);
-
-      const claveCache = `${informacion.ruta}`;
-
-      const contenidoEnCache = cacheDocumentos.get(claveCache);
-
       let texto;
+      let claveCache;
+      let huella;
 
-      const cacheValida =
-        contenidoEnCache &&
-        contenidoEnCache.fechaModificacion === informacion.fechaModificacion &&
-        contenidoEnCache.tamano === informacion.tamano;
+      // Priorizar Supabase Storage.
+      if (documento.storage_path) {
+        claveCache = `supabase:${documento.storage_path}`;
 
-      if (cacheValida) {
-        texto = contenidoEnCache.contenido;
+        huella = [
+          documento.tamano || "",
+          documento.fecha_registro
+            ? new Date(documento.fecha_registro).getTime()
+            : "",
+        ].join(":");
+
+        const contenidoEnCache = cacheDocumentos.get(claveCache);
+
+        if (contenidoEnCache && contenidoEnCache.huella === huella) {
+          texto = contenidoEnCache.contenido;
+        } else {
+          try {
+            texto = await leerDesdeSupabase(documento);
+          } catch (errorStorage) {
+            console.error(
+              `[ASISTIA - SUPABASE] No se pudo leer ${documento.nombre_archivo}:`,
+              errorStorage.message,
+            );
+
+            // Respaldo: intentar lectura local.
+            const informacion = await resolverRutaDocumento(
+              documento.ruta_archivo,
+            );
+
+            texto = await extraerTextoDocumento(informacion.ruta);
+          }
+
+          if (texto && texto.trim()) {
+            texto = texto.slice(0, CONFIG.MAX_CARACTERES_DOCUMENTO);
+
+            cacheDocumentos.set(claveCache, {
+              huella,
+              contenido: texto,
+            });
+          }
+        }
       } else {
-        texto = await extraerTextoDocumento(informacion.ruta);
+        // Documentos antiguos sin ruta en Supabase.
+        const informacion = await resolverRutaDocumento(documento.ruta_archivo);
 
-        if (texto && texto.trim()) {
-          texto = texto.slice(0, CONFIG.MAX_CARACTERES_DOCUMENTO);
+        claveCache = `local:${informacion.ruta}`;
 
-          cacheDocumentos.set(claveCache, {
-            fechaModificacion: informacion.fechaModificacion,
-            tamano: informacion.tamano,
-            contenido: texto,
-          });
+        const contenidoEnCache = cacheDocumentos.get(claveCache);
+
+        const cacheValida =
+          contenidoEnCache &&
+          contenidoEnCache.fechaModificacion ===
+            informacion.fechaModificacion &&
+          contenidoEnCache.tamano === informacion.tamano;
+
+        if (cacheValida) {
+          texto = contenidoEnCache.contenido;
+        } else {
+          texto = await extraerTextoDocumento(informacion.ruta);
+
+          if (texto && texto.trim()) {
+            texto = texto.slice(0, CONFIG.MAX_CARACTERES_DOCUMENTO);
+
+            cacheDocumentos.set(claveCache, {
+              fechaModificacion: informacion.fechaModificacion,
+              tamano: informacion.tamano,
+              contenido: texto,
+            });
+          }
         }
       }
 
@@ -467,13 +545,10 @@ function seleccionarDocumentosRelevantes(contenidos, mensaje) {
   return contenidos
     .map((documento) => ({
       ...documento,
-
       relevancia: calcularRelevancia(documento, palabrasConsulta),
     }))
     .filter((documento) => documento.relevancia > 0)
-    .sort((a, b) => {
-      return b.relevancia - a.relevancia;
-    })
+    .sort((a, b) => b.relevancia - a.relevancia)
     .slice(0, CONFIG.MAX_DOCUMENTOS_RELEVANTES);
 }
 
@@ -545,7 +620,6 @@ async function obtenerContextoInstitucional(
     return construirContexto(relevantes);
   } catch (error) {
     console.error("[ASISTIA - CONOCIMIENTO] Error:", error.message);
-
     throw error;
   }
 }

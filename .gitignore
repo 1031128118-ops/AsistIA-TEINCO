@@ -31,3 +31,6 @@ respaldo_postgresql_18_data/
 
 # Proteger archivo de credenciales
 .env
+
+# Respaldos de base de datos
+backups/
